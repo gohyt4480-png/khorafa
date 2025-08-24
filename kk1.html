@@ -190,12 +190,12 @@
             transition: var(--transition);
         }
 
-        /* نظام التصفية والفرز */
+        /* نظام التصفية والفرز - محسّن للهواتف */
         .filters-section {
             background-color: white;
             border-radius: 8px;
-            padding: 20px;
-            margin: 30px 0;
+            padding: 15px;
+            margin: 20px 0;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
 
@@ -203,9 +203,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 10px;
         }
 
         .filter-title {
@@ -217,28 +217,30 @@
         .sort-options {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             flex-wrap: wrap;
         }
 
         .sort-label {
             font-weight: 500;
             font-size: 0.9rem;
+            white-space: nowrap;
         }
 
         .sort-select {
-            padding: 8px 15px;
+            padding: 8px 12px;
             border: 1px solid #ddd;
             border-radius: 4px;
             background-color: white;
             cursor: pointer;
             font-size: 0.9rem;
+            min-width: 120px;
         }
 
         .filter-options {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 20px;
+            gap: 15px;
             margin-bottom: 15px;
         }
 
@@ -254,10 +256,19 @@
             align-items: center;
             gap: 8px;
             font-size: 1rem;
+            cursor: pointer;
         }
 
         .filter-group-title i {
             color: var(--accent-color);
+            transition: var(--transition);
+        }
+
+        .filter-group-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 8px;
+            margin-top: 10px;
         }
 
         .filter-buttons {
@@ -267,13 +278,16 @@
         }
 
         .filter-btn {
-            padding: 6px 12px;
+            padding: 8px 12px;
             background-color: #f8f8f8;
             border: 1px solid #ddd;
             border-radius: 20px;
             cursor: pointer;
             transition: var(--transition);
             font-size: 0.85rem;
+            flex-grow: 1;
+            text-align: center;
+            min-width: 70px;
         }
 
         .filter-btn:hover, .filter-btn.active {
@@ -287,16 +301,19 @@
             justify-content: flex-end;
             gap: 10px;
             margin-top: 10px;
+            flex-wrap: wrap;
         }
 
         .apply-filters, .reset-filters {
-            padding: 8px 16px;
+            padding: 10px 16px;
             border: none;
             border-radius: 4px;
             cursor: pointer;
             transition: var(--transition);
             font-weight: 500;
             font-size: 0.9rem;
+            flex: 1;
+            min-width: 120px;
         }
 
         .apply-filters {
@@ -721,6 +738,24 @@
             font-weight: bold;
         }
 
+        /* Mobile Filter Toggle Button */
+        .mobile-filter-toggle {
+            display: none;
+            width: 100%;
+            padding: 12px;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            font-weight: 500;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
         /* Responsive */
         @media (min-width: 576px) {
             .products-grid {
@@ -829,6 +864,110 @@
             }
         }
 
+        @media (max-width: 768px) {
+            .mobile-filter-toggle {
+                display: flex;
+            }
+            
+            .filters-section {
+                display: none;
+                margin: 10px 0;
+                padding: 12px;
+            }
+            
+            .filters-section.active {
+                display: block;
+            }
+            
+            .filter-group-content {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            }
+            
+            .filter-btn {
+                padding: 8px 10px;
+                font-size: 0.8rem;
+                min-width: 60px;
+            }
+            
+            .sort-options {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .sort-select {
+                flex-grow: 1;
+                margin-right: 10px;
+            }
+            
+            .filter-actions {
+                flex-direction: column;
+            }
+            
+            .apply-filters, .reset-filters {
+                width: 100%;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            
+            .product-img {
+                height: 180px;
+            }
+            
+            .product-content h3 {
+                font-size: 1rem;
+                height: 48px;
+            }
+            
+            .current-price {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-group-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .filter-btn {
+                min-width: auto;
+            }
+            
+            .section-title {
+                font-size: 1.3rem;
+            }
+            
+            .products-count {
+                font-size: 0.9rem;
+            }
+            
+            .pagination-btn {
+                width: 35px;
+                height: 35px;
+                font-size: 0.8rem;
+            }
+            
+            .floating-cart-btn {
+                bottom: 20px;
+                left: 20px;
+                width: 50px;
+                height: 50px;
+                font-size: 1.3rem;
+            }
+            
+            .cart-count-floating {
+                width: 20px;
+                height: 20px;
+                font-size: 0.7rem;
+            }
+        }
+
         /* Animation */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
@@ -894,9 +1033,18 @@
         </nav>
     </header>
 
+    <!-- زر عرض/إخفاء الفلاتر للهواتف -->
+    <div class="container">
+        <button class="mobile-filter-toggle" id="mobile-filter-toggle">
+            <i class="fas fa-filter"></i>
+            تصفية المنتجات
+            <i class="fas fa-chevron-down" id="filter-chevron"></i>
+        </button>
+    </div>
+
     <!-- نظام التصفية والفرز -->
     <section class="container">
-        <div class="filters-section">
+        <div class="filters-section" id="filters-section">
             <div class="filter-header">
                 <h2 class="filter-title">تصفية المنتجات</h2>
                 <div class="sort-options">
@@ -974,7 +1122,6 @@
             <a href="kk1.html" class="pagination-btn active">1</a>
             <a href="kk2.html" class="pagination-btn">2</a>
             <a href="kk3.html" class="pagination-btn">3</a>
-
         </div>
     </section>
 
@@ -985,7 +1132,7 @@
             <p>كن أول من يعرف عن العروض الجديدة والمنتجات الحصرية</p>
             <form class="newsletter-form">
                 <input type="email" class="newsletter-input" placeholder="بريدك الإلكتروني" required>
-                <button type="submit" class="newsletter-btn">اشترак</button>
+                <button type="submit" class="newsletter-btn">اشتراك</button>
             </form>
         </div>
     </section>
@@ -1194,7 +1341,27 @@
             setupFilterButtons();
             setupSorting();
             updateCartCount();
+            setupMobileFilterToggle();
         });
+
+        // إعداد زر عرض/إخفاء الفلاتر للهواتف
+        function setupMobileFilterToggle() {
+            const mobileFilterToggle = document.getElementById('mobile-filter-toggle');
+            const filtersSection = document.getElementById('filters-section');
+            const filterChevron = document.getElementById('filter-chevron');
+            
+            mobileFilterToggle.addEventListener('click', function() {
+                filtersSection.classList.toggle('active');
+                
+                if (filtersSection.classList.contains('active')) {
+                    filterChevron.classList.remove('fa-chevron-down');
+                    filterChevron.classList.add('fa-chevron-up');
+                } else {
+                    filterChevron.classList.remove('fa-chevron-up');
+                    filterChevron.classList.add('fa-chevron-down');
+                }
+            });
+        }
 
         // دالة لعرض المنتجات
         function renderProducts(productsToRender) {
@@ -1324,6 +1491,13 @@
             }
             
             renderProducts(filteredProducts);
+            
+            // إغلاق قسم الفلاتر على الهواتف بعد التطبيق
+            if (window.innerWidth <= 768) {
+                document.getElementById('filters-section').classList.remove('active');
+                document.getElementById('filter-chevron').classList.remove('fa-chevron-up');
+                document.getElementById('filter-chevron').classList.add('fa-chevron-down');
+            }
         }
 
         // إعادة تعيين الفلاتر
@@ -1486,4 +1660,3 @@
     </script>
 </body>
 </html>
-
