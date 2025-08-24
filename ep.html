@@ -196,11 +196,19 @@
             font-size: 1rem;
         }
 
-        .stats-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
+        /* تحسين بطاقات الإحصائيات للهواتف */
+        .stats-cards-container {
+            overflow-x: auto;
             margin-bottom: 30px;
+            padding-bottom: 10px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .stats-cards {
+            display: flex;
+            gap: 15px;
+            width: max-content;
+            padding: 5px;
         }
 
         .stat-card {
@@ -209,6 +217,8 @@
             padding: 20px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             text-align: center;
+            min-width: 250px;
+            flex-shrink: 0;
         }
 
         .stat-icon {
@@ -627,6 +637,13 @@
             .footer-content {
                 grid-template-columns: repeat(2, 1fr);
             }
+            
+            /* تعديل بطاقات الإحصائيات للشاشات المتوسطة */
+            .stats-cards {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                width: 100%;
+            }
         }
 
         @media (min-width: 992px) {
@@ -640,6 +657,15 @@
             
             .menu-toggle {
                 display: none;
+            }
+            
+            /* تعديل بطاقات الإحصائيات للشاشات الكبيرة */
+            .stats-cards {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .stats-cards-container {
+                overflow-x: visible;
             }
         }
 
@@ -668,6 +694,46 @@
             .nav-links li {
                 margin: 10px 0;
                 text-align: center;
+            }
+        }
+        
+        /* تحسينات إضافية للهواتف */
+        @media (max-width: 480px) {
+            .stat-card {
+                min-width: 220px;
+                padding: 15px;
+            }
+            
+            .stat-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.1rem;
+            }
+            
+            .stat-value {
+                font-size: 1.4rem;
+            }
+            
+            .section-title {
+                font-size: 1.2rem;
+            }
+            
+            .referral-info ul {
+                padding-right: 15px;
+            }
+            
+            .copy-btn, .add-card-btn {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+            }
+            
+            .cancel-btn, .save-btn {
+                width: 100%;
+                margin-bottom: 10px;
             }
         }
     </style>
@@ -721,32 +787,35 @@
             <p class="dashboard-subtitle" id="welcomeMessage">مرحباً بك! هذه إحصائيات أدائك وعمولاتك</p>
         </div>
 
-        <div class="stats-cards">
-            <div class="stat-card">
-                <div class="stat-icon">
-                    <i class="fas fa-users"></i>
+        <!-- تعديل تصميم بطاقات الإحصائيات -->
+        <div class="stats-cards-container">
+            <div class="stats-cards">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="stat-title">عدد الأشخاص المدعوين</h3>
+                    <div class="stat-value">0</div>
+                    <div class="stat-change">+0 هذا الشهر</div>
                 </div>
-                <h3 class="stat-title">عدد الأشخاص المدعوين</h3>
-                <div class="stat-value">0</div>
-                <div class="stat-change">+0 هذا الشهر</div>
-            </div>
 
-            <div class="stat-card">
-                <div class="stat-icon">
-                    <i class="fas fa-wallet"></i>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <h3 class="stat-title">الرصيد المودع</h3>
+                    <div class="stat-value">0 ر.س</div>
+                    <div class="stat-change">+0 ر.س هذا الشهر</div>
                 </div>
-                <h3 class="stat-title">الرصيد المودع</h3>
-                <div class="stat-value">0 ر.س</div>
-                <div class="stat-change">+0 ر.س هذا الشهر</div>
-            </div>
 
-            <div class="stat-card">
-                <div class="stat-icon">
-                    <i class="fas fa-gift"></i>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <h3 class="stat-title">العمولات المستحقة</h3>
+                    <div class="stat-value">0 ر.س</div>
+                    <div class="stat-change">سيتم تحويلها قريباً</div>
                 </div>
-                <h3 class="stat-title">العمولات المستحقة</h3>
-                <div class="stat-value">0 ر.س</div>
-                <div class="stat-change">سيتم تحويلها قريباً</div>
             </div>
         </div>
 
