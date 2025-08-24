@@ -37,7 +37,7 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 15px;
         }
 
         /* الشريط العلوي */
@@ -65,10 +65,15 @@
             transform: translateY(-50%) scale(1.1);
         }
 
+        .top-bar-text {
+            max-width: 80%;
+            margin: 0 auto;
+        }
+
         /* شعار المتجر */
         .logo {
             font-family: 'Arabic Typesetting', serif;
-            font-size: 2.5rem;
+            font-size: 2rem;
             color: var(--gold-color);
             text-decoration: none;
             display: flex;
@@ -102,16 +107,17 @@
             align-items: center;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 15px;
         }
 
         .nav-links {
             display: flex;
             list-style: none;
+            transition: var(--transition);
         }
 
         .nav-links li {
-            margin: 0 15px;
+            margin: 0 10px;
         }
 
         .nav-links a {
@@ -120,6 +126,7 @@
             font-weight: 500;
             transition: var(--transition);
             position: relative;
+            font-size: 0.9rem;
         }
 
         .nav-links a:after {
@@ -144,8 +151,8 @@
 
         .nav-icons a {
             color: var(--text-light);
-            margin-left: 20px;
-            font-size: 1.2rem;
+            margin-left: 15px;
+            font-size: 1.1rem;
             transition: var(--transition);
             position: relative;
         }
@@ -169,13 +176,31 @@
             justify-content: center;
         }
 
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 25px;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 100%;
+            height: 3px;
+            background-color: var(--text-light);
+            border-radius: 5px;
+            transition: var(--transition);
+        }
+
         /* تقدم الطلب */
         .checkout-progress {
             display: flex;
             justify-content: space-between;
-            margin: 40px auto;
+            margin: 30px auto;
             max-width: 800px;
             position: relative;
+            flex-wrap: wrap;
         }
 
         .checkout-progress:before {
@@ -195,6 +220,7 @@
             align-items: center;
             position: relative;
             z-index: 2;
+            margin-bottom: 20px;
         }
 
         .step-icon {
@@ -214,6 +240,7 @@
         .step-text {
             font-size: 0.9rem;
             color: #777;
+            text-align: center;
         }
 
         .progress-step.active .step-icon {
@@ -236,32 +263,39 @@
         /* محتوى صفحة الدفع */
         .checkout-container {
             display: grid;
-            grid-template-columns: 1fr 400px;
-            gap: 30px;
-            margin: 40px 0;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin: 30px 0;
         }
 
-        @media (max-width: 992px) {
+        @media (min-width: 992px) {
             .checkout-container {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr 400px;
             }
         }
 
         .checkout-form {
             background-color: white;
             border-radius: 8px;
-            padding: 25px;
+            padding: 20px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            order: 2;
+        }
+
+        @media (min-width: 992px) {
+            .checkout-form {
+                order: 1;
+            }
         }
 
         .form-section {
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
 
         .section-title {
             font-size: 1.3rem;
             color: var(--primary-color);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             padding-bottom: 10px;
             border-bottom: 2px solid var(--gold-color);
             font-family: 'Arabic Typesetting', serif;
@@ -269,14 +303,14 @@
 
         .form-row {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr;
             gap: 15px;
             margin-bottom: 15px;
         }
 
-        @media (max-width: 768px) {
+        @media (min-width: 768px) {
             .form-row {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr 1fr;
             }
         }
 
@@ -289,6 +323,7 @@
             margin-bottom: 8px;
             font-weight: 500;
             color: var(--secondary-color);
+            font-size: 0.9rem;
         }
 
         .form-input {
@@ -360,10 +395,11 @@
         .payment-title {
             font-weight: 500;
             margin-bottom: 5px;
+            font-size: 1rem;
         }
 
         .payment-desc {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: #777;
         }
 
@@ -371,17 +407,24 @@
         .order-summary {
             background-color: white;
             border-radius: 8px;
-            padding: 25px;
+            padding: 20px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             height: fit-content;
-            position: sticky;
-            top: 100px;
+            order: 1;
+        }
+
+        @media (min-width: 992px) {
+            .order-summary {
+                order: 2;
+                position: sticky;
+                top: 100px;
+            }
         }
 
         .summary-title {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: var(--primary-color);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             font-family: 'Arabic Typesetting', serif;
             border-bottom: 2px solid var(--gold-color);
             padding-bottom: 10px;
@@ -389,6 +432,8 @@
 
         .order-items {
             margin-bottom: 20px;
+            max-height: 300px;
+            overflow-y: auto;
         }
 
         .order-item {
@@ -415,16 +460,18 @@
         .item-name {
             font-weight: 500;
             margin-bottom: 5px;
+            font-size: 0.95rem;
         }
 
         .item-price {
             color: var(--accent-color);
             font-weight: bold;
+            font-size: 0.9rem;
         }
 
         .item-quantity {
             color: #777;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
         .item-actions {
@@ -465,7 +512,8 @@
         .summary-row {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
         }
 
         .summary-label {
@@ -484,7 +532,7 @@
             border-top: 1px solid #eee;
             padding-top: 15px;
             margin-top: 10px;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: bold;
         }
 
@@ -503,7 +551,7 @@
             gap: 10px;
             margin-top: 15px;
             color: var(--secondary-color);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
         .place-order-btn {
@@ -514,7 +562,7 @@
             color: white;
             border: none;
             border-radius: 4px;
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: bold;
             cursor: pointer;
             transition: var(--transition);
@@ -531,43 +579,45 @@
         .newsletter {
             background-color: var(--primary-color);
             color: white;
-            padding: 60px 0;
+            padding: 40px 0;
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 40px;
         }
 
         .newsletter h2 {
-            font-size: 2.2rem;
-            margin-bottom: 20px;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
             font-family: 'Arabic Typesetting', serif;
         }
 
         .newsletter p {
             max-width: 600px;
-            margin: 0 auto 30px;
-            font-size: 1.1rem;
+            margin: 0 auto 20px;
+            font-size: 1rem;
         }
 
         .newsletter-form {
             display: flex;
             max-width: 500px;
             margin: 0 auto;
+            flex-direction: column;
         }
 
         .newsletter-input {
             flex: 1;
-            padding: 12px 20px;
+            padding: 12px 15px;
             border: none;
-            border-radius: 4px 0 0 4px;
+            border-radius: 4px;
             font-size: 1rem;
+            margin-bottom: 10px;
         }
 
         .newsletter-btn {
-            padding: 0 25px;
+            padding: 12px 20px;
             background-color: var(--accent-color);
             color: white;
             border: none;
-            border-radius: 0 4px 4px 0;
+            border-radius: 4px;
             cursor: pointer;
             transition: var(--transition);
         }
@@ -580,21 +630,21 @@
         footer {
             background-color: var(--primary-color);
             color: var(--text-light);
-            padding: 50px 0 20px;
+            padding: 40px 0 20px;
         }
 
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: 1fr;
             gap: 30px;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 15px;
         }
 
         .footer-column h3 {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
             color: var(--gold-color);
             font-family: 'Arabic Typesetting', serif;
         }
@@ -604,13 +654,16 @@
         }
 
         .footer-links li {
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
         }
 
         .footer-links a {
             color: var(--text-light);
             text-decoration: none;
             transition: var(--transition);
+            font-size: 0.9rem;
         }
 
         .footer-links a:hover {
@@ -618,18 +671,23 @@
             padding-right: 5px;
         }
 
+        .footer-links i {
+            margin-left: 8px;
+            width: 20px;
+        }
+
         .social-icons {
             display: flex;
             gap: 15px;
-            margin-top: 20px;
+            margin-top: 15px;
         }
 
         .social-icons a {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
+            width: 35px;
+            height: 35px;
             background-color: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
             color: var(--text-light);
@@ -643,62 +701,10 @@
 
         .copyright {
             text-align: center;
-            padding-top: 30px;
-            margin-top: 30px;
+            padding-top: 20px;
+            margin-top: 20px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .checkout-progress {
-                flex-direction: column;
-                gap: 20px;
-                align-items: flex-start;
-            }
-            
-            .checkout-progress:before {
-                display: none;
-            }
-            
-            .progress-step {
-                flex-direction: row;
-                gap: 15px;
-            }
-            
-            .newsletter-form {
-                flex-direction: column;
-            }
-            
-            .newsletter-input, .newsletter-btn {
-                border-radius: 4px;
-                width: 100%;
-            }
-            
-            .newsletter-btn {
-                margin-top: 10px;
-                padding: 12px;
-            }
-        }
-
-        /* Animation */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes slideDown {
-            from { transform: translateY(-100%); }
-            to { transform: translateY(0); }
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-             50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        .animate {
-            animation: fadeIn 0.5s ease forwards;
+            font-size: 0.9rem;
         }
 
         /* Toast Notification */
@@ -708,7 +714,7 @@
             right: 20px;
             background-color: var(--accent-color);
             color: white;
-            padding: 15px 20px;
+            padding: 12px 18px;
             border-radius: 4px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             z-index: 1000;
@@ -717,6 +723,7 @@
             gap: 10px;
             transform: translateX(100%);
             transition: transform 0.3s ease;
+            max-width: 300px;
         }
 
         .toast.show {
@@ -743,6 +750,9 @@
             align-items: center;
             gap: 8px;
             transition: var(--transition);
+            font-size: 0.9rem;
+            width: 100%;
+            justify-content: center;
         }
 
         .location-btn:hover {
@@ -755,12 +765,13 @@
             background-color: #f9f9f9;
             border-radius: 4px;
             border: 1px solid #eee;
+            font-size: 0.9rem;
         }
 
         /* أسلوب بطاقة الائتمان */
         .card-type-icon {
             position: absolute;
-            left: 15px; /* تغيير من right إلى left */
+            left: 15px;
             top: 40px;
             font-size: 24px;
             color: #ccc;
@@ -771,11 +782,114 @@
         }
 
         .card-input-group .form-input {
-            padding-left: 50px; /* إضافة مساحة على اليسار للأيقونة */
+            padding-left: 50px;
         }
 
         .hidden {
             display: none;
+        }
+
+        /* Responsive */
+        @media (min-width: 768px) {
+            .newsletter-form {
+                flex-direction: row;
+            }
+            
+            .newsletter-input {
+                margin-bottom: 0;
+                margin-left: 10px;
+                border-radius: 4px 0 0 4px;
+            }
+            
+            .newsletter-btn {
+                border-radius: 0 4px 4px 0;
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .location-btn {
+                width: auto;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .nav-links {
+                display: flex !important;
+            }
+            
+            .menu-toggle {
+                display: none;
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 991px) {
+            .menu-toggle {
+                display: flex;
+            }
+            
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                right: 0;
+                width: 100%;
+                background-color: var(--secondary-color);
+                flex-direction: column;
+                padding: 20px;
+                z-index: 1000;
+                display: none;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 10px 0;
+                text-align: center;
+            }
+            
+            .checkout-progress {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+            
+            .checkout-progress:before {
+                display: none;
+            }
+            
+            .progress-step {
+                flex-direction: row;
+                gap: 15px;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+             50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .animate {
+            animation: fadeIn 0.5s ease forwards;
         }
     </style>
 </head>
@@ -783,7 +897,7 @@
     <!-- الشريط العلوي -->
     <div class="top-bar">
         <span class="close-topbar"><i class="fas fa-times"></i></span>
-        توصيل مجاني للطلبات فوق 500 ر.س | خصم 20% على أول طلب لك | استخدم الكود: WELCOME20
+        <div class="top-bar-text">توصيل مجاني للطلبات فوق 500 ر.س | خصم 20% على أول طلب لك | استخدم الكود: WELCOME20</div>
     </div>
 
     <!-- الرأس -->
@@ -796,6 +910,12 @@
 
         <nav>
             <div class="nav-container">
+                <div class="menu-toggle" id="mobile-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                
                 <ul class="nav-links">
                     <li><a href="index.html">الرئيسية</a></li>
                     <li><a href="kk1.html">العطور</a></li>
@@ -1103,6 +1223,11 @@
             document.querySelector('form').addEventListener('submit', function(e) {
                 const orderDetails = collectOrderData();
                 document.getElementById('orderDetails').value = JSON.stringify(orderDetails);
+            });
+
+            // تحويل قائمة الهاتف
+            document.getElementById('mobile-menu').addEventListener('click', function() {
+                document.querySelector('.nav-links').classList.toggle('active');
             });
         });
 
@@ -1548,4 +1673,3 @@
     </script>
 </body>
 </html>
-
