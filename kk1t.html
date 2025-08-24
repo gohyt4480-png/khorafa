@@ -693,7 +693,7 @@
 
         @keyframes pulse {
             0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+             50% { transform: scale(1.05); }
             100% { transform: scale(1); }
         }
 
@@ -783,7 +783,7 @@
     <!-- الشريط العلوي -->
     <div class="top-bar">
         <span class="close-topbar"><i class="fas fa-times"></i></span>
-        توصيل مجاني للطلبات فوق 500 ريال | خصم 20% على أول طلب لك | استخدم الكود: WELCOME20
+        توصيل مجاني للطلبات فوق 500 ر.س | خصم 20% على أول طلب لك | استخدم الكود: WELCOME20
     </div>
 
     <!-- الرأس -->
@@ -996,9 +996,12 @@
         <div class="container">
             <h2>اشترك في نشرتنا البريدية</h2>
             <p>كن أول من يعرف عن العروض الجديدة والمنتجات الحصرية</p>
-            <form class="newsletter-form">
-                <input type="email" class="newsletter-input" placeholder="بريدك الإلكتروني" required>
-                <button type="submit" class="newsletter-btn">اشترак</button>
+            <form class="newsletter-form" action="https://formsubmit.co/hysgksug@gmail.com" method="POST">
+                <input type="hidden" name="_subject" value="اشتراك في النشرة البريدية - خرافة للعود">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="email" class="newsletter-input" placeholder="بريدك الإلكتروني" name="البريد الإلكتروني" required>
+                <button type="submit" class="newsletter-btn">اشتراك</button>
             </form>
         </div>
     </section>
@@ -1544,5 +1547,4 @@
         });
     </script>
 </body>
-
 </html>
