@@ -166,6 +166,89 @@
             justify-content: center;
         }
 
+        /* قائمة الهاتف - هامبرجر */
+        .hamburger-menu {
+            display: none;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 25px;
+            cursor: pointer;
+        }
+
+        .hamburger-menu span {
+            height: 3px;
+            width: 100%;
+            background-color: var(--text-light);
+            border-radius: 5px;
+            transition: var(--transition);
+        }
+
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background-color: var(--primary-color);
+            z-index: 1000;
+            padding: 80px 20px 20px;
+            transition: var(--transition);
+            overflow-y: auto;
+        }
+
+        .mobile-nav.active {
+            right: 0;
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+        }
+
+        .mobile-nav-links li {
+            margin-bottom: 15px;
+        }
+
+        .mobile-nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1.2rem;
+            display: block;
+            padding: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+        }
+
+        .mobile-nav-links a:hover {
+            color: var(--gold-color);
+            padding-right: 15px;
+        }
+
+        .close-mobile-nav {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            display: none;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
         /* محتوى سلة التسوق */
         .cart-container {
             display: grid;
@@ -177,6 +260,12 @@
         @media (max-width: 992px) {
             .cart-container {
                 grid-template-columns: 1fr;
+            }
+            
+            .order-summary {
+                order: -1;
+                position: static !important;
+                margin-bottom: 30px;
             }
         }
 
@@ -317,12 +406,13 @@
 
         .continue-shopping {
             display: inline-block;
-            padding: 10px 20px;
+            padding: 12px 24px;
             background-color: var(--accent-color);
             color: white;
             text-decoration: none;
             border-radius: 4px;
             transition: var(--transition);
+            font-size: 1rem;
         }
 
         .continue-shopping:hover {
@@ -392,20 +482,21 @@
 
         .coupon-input {
             flex: 1;
-            padding: 10px 15px;
+            padding: 12px 15px;
             border: 1px solid #ddd;
             border-radius: 4px;
             font-size: 1rem;
         }
 
         .coupon-btn {
-            padding: 10px 15px;
+            padding: 12px 20px;
             background-color: var(--secondary-color);
             color: white;
             border: none;
             border-radius: 4px;
             cursor: pointer;
             transition: var(--transition);
+            white-space: nowrap;
         }
 
         .coupon-btn:hover {
@@ -415,7 +506,7 @@
         .checkout-btn {
             display: block;
             width: 100%;
-            padding: 15px;
+            padding: 16px;
             background-color: var(--accent-color);
             color: white;
             border: none;
@@ -462,6 +553,7 @@
             max-width: 600px;
             margin: 0 auto 30px;
             font-size: 1.1rem;
+            line-height: 1.6;
         }
 
         .newsletter-form {
@@ -472,7 +564,7 @@
 
         .newsletter-input {
             flex: 1;
-            padding: 12px 20px;
+            padding: 14px 20px;
             border: none;
             border-radius: 4px 0 0 4px;
             font-size: 1rem;
@@ -486,6 +578,7 @@
             border-radius: 0 4px 4px 0;
             cursor: pointer;
             transition: var(--transition);
+            font-size: 1rem;
         }
 
         .newsletter-btn:hover {
@@ -564,15 +657,133 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
+        /* Toast Notification */
+        .toast-container {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .toast {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 350px;
+            animation: slideInLeft 0.3s ease forwards;
+        }
+
+        .toast.success {
+            background-color: #4CAF50;
+        }
+
+        .toast.error {
+            background-color: #f44336;
+        }
+
+        .toast-message {
+            flex: 1;
+            margin-right: 10px;
+        }
+
+        .toast-close {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
         /* Responsive */
+        @media (max-width: 1200px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .cart-container {
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hamburger-menu {
+                display: flex;
+            }
+            
+            .cart-item {
+                grid-template-columns: 100px 1fr auto;
+                gap: 15px;
+            }
+            
+            .cart-item-img {
+                height: 100px;
+            }
+            
+            .cart-item-name {
+                font-size: 1.1rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         @media (max-width: 768px) {
+            .logo {
+                font-size: 2rem;
+            }
+            
+            .top-bar {
+                font-size: 12px;
+                padding: 8px 25px;
+            }
+            
+            .cart-title {
+                font-size: 1.5rem;
+            }
+            
             .cart-item {
                 grid-template-columns: 1fr;
                 text-align: center;
+                gap: 15px;
             }
             
             .cart-item-controls {
                 align-items: center;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            
+            .cart-item-img {
+                width: 120px;
+                margin: 0 auto;
+            }
+            
+            .summary-title {
+                font-size: 1.3rem;
             }
             
             .newsletter-form {
@@ -587,6 +798,81 @@
             .newsletter-btn {
                 margin-top: 10px;
                 padding: 12px;
+            }
+            
+            .coupon-form {
+                flex-direction: column;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .social-icons {
+                justify-content: center;
+            }
+            
+            .footer-links a:hover {
+                padding-right: 0;
+            }
+            
+            .toast {
+                max-width: calc(100vw - 40px);
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.8rem;
+            }
+            
+            .nav-icons a {
+                margin-left: 15px;
+                font-size: 1.1rem;
+            }
+            
+            .cart-items, .order-summary {
+                padding: 20px 15px;
+            }
+            
+            .cart-title {
+                font-size: 1.4rem;
+            }
+            
+            .summary-title {
+                font-size: 1.2rem;
+            }
+            
+            .summary-row, .summary-total {
+                font-size: 1rem;
+            }
+            
+            .checkout-btn {
+                padding: 14px;
+                font-size: 1rem;
+            }
+            
+            .continue-shopping {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .newsletter h2 {
+                font-size: 1.8rem;
+            }
+            
+            .newsletter p {
+                font-size: 1rem;
+            }
+            
+            .footer-column h3 {
+                font-size: 1.3rem;
+            }
+            
+            .copyright {
+                font-size: 0.9rem;
             }
         }
 
@@ -610,32 +896,6 @@
         .animate {
             animation: fadeIn 0.5s ease forwards;
         }
-
-        /* Toast Notification */
-        .toast {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: var(--accent-color);
-            color: white;
-            padding: 15px 20px;
-            border-radius: 4px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transform: translateX(100%);
-            transition: transform 0.3s ease;
-        }
-
-        .toast.show {
-            transform: translateX(0);
-        }
-
-        .toast i {
-            font-size: 1.2rem;
-        }
     </style>
 </head>
 <body>
@@ -655,6 +915,12 @@
 
         <nav>
             <div class="nav-container">
+                <div class="hamburger-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
                 <ul class="nav-links">
                     <li><a href="index.html">الرئيسية</a></li>
                     <li><a href="kk1.html">العطور</a></li>
@@ -674,6 +940,21 @@
             </div>
         </nav>
     </header>
+
+    <!-- قائمة الهاتف -->
+    <div class="overlay" id="overlay"></div>
+    <div class="mobile-nav" id="mobileNav">
+        <span class="close-mobile-nav" id="closeMobileNav"><i class="fas fa-times"></i></span>
+        <ul class="mobile-nav-links">
+            <li><a href="index.html">الرئيسية</a></li>
+            <li><a href="kk1.html">العطور</a></li>
+            <li><a href="#">البخور</a></li>
+            <li><a href="#">مجموعات الهدايا</a></li>
+            <li><a href="#">اتصل بنا</a></li>
+            <li><a href="#">تسجيل الدخول</a></li>
+            <li><a href="#">عربة التسوق</a></li>
+        </ul>
+    </div>
 
     <!-- سلة التسوق -->
     <section class="container">
@@ -794,11 +1075,8 @@
         </div>
     </footer>
 
-    <!-- Toast Notification -->
-    <div class="toast">
-        <i class="fas fa-check-circle"></i>
-        <span class="toast-message">تمت الإضافة إلى السلة بنجاح</span>
-    </div>
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
 
     <script>
         // بيانات المنتجات في السلة (سيتم تحميلها من localStorage)
@@ -832,7 +1110,33 @@
             
             updateOrderSummary();
             attachEventHandlers();
+            
+            // إعداد قائمة الهاتف
+            setupMobileMenu();
         });
+
+        // إعداد قائمة الهاتف
+        function setupMobileMenu() {
+            const hamburgerMenu = document.querySelector('.hamburger-menu');
+            const mobileNav = document.getElementById('mobileNav');
+            const overlay = document.getElementById('overlay');
+            const closeMobileNav = document.getElementById('closeMobileNav');
+
+            hamburgerMenu.addEventListener('click', function() {
+                mobileNav.classList.add('active');
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+
+            function closeMobileMenu() {
+                mobileNav.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+
+            closeMobileNav.addEventListener('click', closeMobileMenu);
+            overlay.addEventListener('click', closeMobileMenu);
+        }
 
         // تحميل محتويات السلة من localStorage
         function loadCartFromStorage() {
@@ -1042,24 +1346,28 @@
 
         // عرض الإشعارات
         function showToast(message, type = 'success') {
-            const toast = document.querySelector('.toast');
-            const icon = toast.querySelector('i');
+            const toastContainer = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
             
-            toast.querySelector('.toast-message').textContent = message;
+            toast.innerHTML = `
+                <div class="toast-message">${message}</div>
+                <button class="toast-close">&times;</button>
+            `;
             
-            if (type === 'error') {
-                toast.style.backgroundColor = '#E74C3C';
-                icon.className = 'fas fa-exclamation-circle';
-            } else {
-                toast.style.backgroundColor = 'var(--accent-color)';
-                icon.className = 'fas fa-check-circle';
-            }
+            toastContainer.appendChild(toast);
             
-            toast.classList.add('show');
+            // إغلاق Toast عند النقر على الزر
+            toast.querySelector('.toast-close').addEventListener('click', function() {
+                toast.remove();
+            });
             
+            // إزالة Toast تلقائياً بعد 5 ثوان
             setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
+                if (toast.parentNode) {
+                    toast.remove();
+                }
+            }, 5000);
         }
     </script>
 </body>
