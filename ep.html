@@ -34,7 +34,7 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 15px;
         }
 
         /* الشريط العلوي */
@@ -45,6 +45,9 @@
             text-align: center;
             font-size: 14px;
             position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .close-topbar {
@@ -61,10 +64,14 @@
             transform: translateY(-50%) scale(1.1);
         }
 
+        .top-bar-text {
+            max-width: 80%;
+        }
+
         /* شعار المتجر */
         .logo {
             font-family: 'Arabic Typesetting', serif;
-            font-size: 2.5rem;
+            font-size: 2rem;
             color: var(--gold-color);
             text-decoration: none;
             display: flex;
@@ -87,6 +94,7 @@
             background-color: var(--secondary-color);
             padding: 15px 0;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
         }
 
         .nav-container {
@@ -95,16 +103,17 @@
             align-items: center;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 15px;
         }
 
         .nav-links {
             display: flex;
             list-style: none;
+            transition: var(--transition);
         }
 
         .nav-links li {
-            margin: 0 15px;
+            margin: 0 10px;
         }
 
         .nav-links a {
@@ -113,6 +122,7 @@
             font-weight: 500;
             transition: var(--transition);
             position: relative;
+            font-size: 0.9rem;
         }
 
         .nav-links a:after {
@@ -137,8 +147,8 @@
 
         .nav-icons a {
             color: var(--text-light);
-            margin-left: 20px;
-            font-size: 1.2rem;
+            margin-left: 15px;
+            font-size: 1.1rem;
             transition: var(--transition);
             position: relative;
         }
@@ -147,18 +157,35 @@
             color: var(--gold-color);
         }
 
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 25px;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 100%;
+            height: 3px;
+            background-color: var(--text-light);
+            border-radius: 5px;
+            transition: var(--transition);
+        }
+
         /* محتوى لوحة الموظف */
         .employee-dashboard {
-            padding: 40px 0;
+            padding: 30px 0;
         }
 
         .dashboard-header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
 
         .dashboard-title {
-            font-size: 2.2rem;
+            font-size: 1.8rem;
             color: var(--primary-color);
             margin-bottom: 10px;
             font-family: 'Arabic Typesetting', serif;
@@ -166,67 +193,67 @@
 
         .dashboard-subtitle {
             color: #777;
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
 
         .stats-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
         }
 
         .stat-card {
             background-color: white;
             border-radius: 10px;
-            padding: 25px;
+            padding: 20px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             text-align: center;
         }
 
         .stat-icon {
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             background-color: rgba(139, 69, 19, 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 15px;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: var(--accent-color);
         }
 
         .stat-title {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: #777;
             margin-bottom: 10px;
         }
 
         .stat-value {
-            font-size: 2rem;
+            font-size: 1.6rem;
             font-weight: bold;
             color: var(--primary-color);
         }
 
         .stat-change {
             margin-top: 10px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--success-color);
         }
 
-        .referral-section {
+        .referral-section, .banking-section, .transactions-section {
             background-color: white;
             border-radius: 10px;
-            padding: 25px;
+            padding: 20px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
 
         .section-title {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: var(--primary-color);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             font-family: 'Arabic Typesetting', serif;
             border-bottom: 2px solid var(--gold-color);
             padding-bottom: 10px;
@@ -234,27 +261,31 @@
 
         .referral-link-container {
             display: flex;
+            flex-direction: column;
             margin-bottom: 20px;
         }
 
         .referral-link {
-            flex: 1;
+            width: 100%;
             padding: 12px 15px;
             border: 1px solid #ddd;
             border-radius: 4px;
             font-size: 1rem;
             background-color: #f9f9f9;
+            margin-bottom: 10px;
         }
 
         .copy-btn {
-            padding: 0 20px;
+            padding: 12px 20px;
             background-color: var(--accent-color);
             color: white;
             border: none;
             border-radius: 4px;
-            margin-right: 10px;
             cursor: pointer;
             transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .copy-btn:hover {
@@ -280,20 +311,14 @@
 
         .referral-info li {
             margin-bottom: 8px;
+            font-size: 0.9rem;
         }
 
         /* قسم إضافة البطاقة */
-        .banking-section {
-            background-color: white;
-            border-radius: 10px;
-            padding: 25px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            margin-bottom: 40px;
-        }
-
         .banking-message {
             display: flex;
-            align-items: center;
+            flex-direction: column;
+            align-items: flex-start;
             background-color: #f8f0e5;
             border-radius: 8px;
             padding: 15px;
@@ -303,12 +328,13 @@
         .banking-message i {
             font-size: 1.5rem;
             color: var(--accent-color);
-            margin-left: 15px;
+            margin-bottom: 10px;
         }
 
         .banking-message p {
             flex: 1;
             color: var(--primary-color);
+            margin-bottom: 15px;
         }
 
         .add-card-btn {
@@ -320,6 +346,7 @@
             font-weight: bold;
             cursor: pointer;
             transition: var(--transition);
+            align-self: flex-end;
         }
 
         .add-card-btn:hover {
@@ -335,8 +362,8 @@
         }
 
         .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            display: flex;
+            flex-direction: column;
             gap: 15px;
             margin-bottom: 15px;
         }
@@ -419,13 +446,6 @@
         }
 
         /* قسم المعاملات */
-        .transactions-section {
-            background-color: white;
-            border-radius: 10px;
-            padding: 25px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-
         .transaction-item {
             display: flex;
             justify-content: space-between;
@@ -472,15 +492,15 @@
 
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: 1fr;
             gap: 30px;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 15px;
         }
 
         .footer-column h3 {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             margin-bottom: 15px;
             color: var(--gold-color);
             font-family: 'Arabic Typesetting', serif;
@@ -492,17 +512,25 @@
 
         .footer-links li {
             margin-bottom: 8px;
+            display: flex;
+            align-items: center;
         }
 
         .footer-links a {
             color: var(--text-light);
             text-decoration: none;
             transition: var(--transition);
+            font-size: 0.9rem;
         }
 
         .footer-links a:hover {
             color: var(--gold-color);
             padding-right: 5px;
+        }
+
+        .footer-links i {
+            margin-left: 8px;
+            width: 20px;
         }
 
         .social-icons {
@@ -536,27 +564,6 @@
             font-size: 0.9rem;
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-            
-            .referral-link-container {
-                flex-direction: column;
-            }
-            
-            .copy-btn {
-                margin-right: 0;
-                margin-top: 10px;
-                padding: 12px;
-            }
-            
-            .nav-links {
-                display: none;
-            }
-        }
-
         .hidden {
             display: none;
         }
@@ -574,13 +581,102 @@
         .success-message i {
             margin-left: 10px;
         }
+
+        /* Responsive */
+        @media (min-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+            
+            .top-bar-text {
+                max-width: 100%;
+            }
+            
+            .logo {
+                font-size: 2.5rem;
+            }
+            
+            .referral-link-container {
+                flex-direction: row;
+            }
+            
+            .referral-link {
+                width: auto;
+                margin-bottom: 0;
+                margin-left: 10px;
+            }
+            
+            .banking-message {
+                flex-direction: row;
+                align-items: center;
+            }
+            
+            .banking-message i {
+                margin-bottom: 0;
+                margin-left: 15px;
+            }
+            
+            .banking-message p {
+                margin-bottom: 0;
+            }
+            
+            .form-row {
+                flex-direction: row;
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 992px) {
+            .footer-content {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .nav-links {
+                display: flex !important;
+            }
+            
+            .menu-toggle {
+                display: none;
+            }
+        }
+
+        @media (max-width: 991px) {
+            .menu-toggle {
+                display: flex;
+            }
+            
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                right: 0;
+                width: 100%;
+                background-color: var(--secondary-color);
+                flex-direction: column;
+                padding: 20px;
+                z-index: 1000;
+                display: none;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 10px 0;
+                text-align: center;
+            }
+        }
     </style>
 </head>
 <body>
     <!-- الشريط العلوي -->
     <div class="top-bar">
         <span class="close-topbar"><i class="fas fa-times"></i></span>
-        توصيل مجاني للطلبات فوق 500 ريال | خصم 20% على أول طلب لك | استخدم الكود: WELCOME20
+        <div class="top-bar-text">توصيل مجاني للطلبات فوق 500 ريال | خصم 20% على أول طلب لك | استخدم الكود: WELCOME20</div>
     </div>
 
     <!-- الرأس -->
@@ -593,6 +689,12 @@
 
         <nav>
             <div class="nav-container">
+                <div class="menu-toggle" id="mobile-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                
                 <ul class="nav-links">
                     <li><a href="index.html">الرئيسية</a></li>
                     <li><a href="kk1.html">العطور</a></li>
@@ -815,6 +917,11 @@
             document.querySelector('.top-bar').style.display = 'none';
         });
 
+        // تحويل قائمة الهاتف
+        document.getElementById('mobile-menu').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+
         // محاولة قراءة اسم المستخدم من ملف log.html
         function loadUserName() {
             // هذه دالة وهمية لمحاكاة قراءة اسم المستخدم من ملف
@@ -932,5 +1039,4 @@
         });
     </script>
 </body>
-
 </html>
