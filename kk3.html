@@ -173,7 +173,8 @@
             justify-content: center;
         }
 
-        .menu-toggle {
+        /* قائمة الهاتف - هامبرجر */
+        .hamburger-menu {
             display: none;
             flex-direction: column;
             justify-content: space-around;
@@ -182,20 +183,85 @@
             cursor: pointer;
         }
 
-        .menu-toggle span {
-            width: 100%;
+        .hamburger-menu span {
             height: 3px;
+            width: 100%;
             background-color: var(--text-light);
             border-radius: 5px;
             transition: var(--transition);
         }
 
-        /* نظام التصفية والفرز */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background-color: var(--primary-color);
+            z-index: 1000;
+            padding: 80px 20px 20px;
+            transition: var(--transition);
+            overflow-y: auto;
+        }
+
+        .mobile-nav.active {
+            right: 0;
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+        }
+
+        .mobile-nav-links li {
+            margin-bottom: 15px;
+        }
+
+        .mobile-nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1.2rem;
+            display: block;
+            padding: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+        }
+
+        .mobile-nav-links a:hover {
+            color: var(--gold-color);
+            padding-right: 15px;
+        }
+
+        .close-mobile-nav {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            display: none;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        /* نظام التصفية والفرز - محسّن للهواتف */
         .filters-section {
             background-color: white;
             border-radius: 8px;
-            padding: 20px;
-            margin: 30px 0;
+            padding: 15px;
+            margin: 20px 0;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
 
@@ -203,9 +269,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 10px;
         }
 
         .filter-title {
@@ -217,28 +283,30 @@
         .sort-options {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             flex-wrap: wrap;
         }
 
         .sort-label {
             font-weight: 500;
             font-size: 0.9rem;
+            white-space: nowrap;
         }
 
         .sort-select {
-            padding: 8px 15px;
+            padding: 8px 12px;
             border: 1px solid #ddd;
             border-radius: 4px;
             background-color: white;
             cursor: pointer;
             font-size: 0.9rem;
+            min-width: 120px;
         }
 
         .filter-options {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 20px;
+            gap: 15px;
             margin-bottom: 15px;
         }
 
@@ -254,10 +322,19 @@
             align-items: center;
             gap: 8px;
             font-size: 1rem;
+            cursor: pointer;
         }
 
         .filter-group-title i {
             color: var(--accent-color);
+            transition: var(--transition);
+        }
+
+        .filter-group-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 8px;
+            margin-top: 10px;
         }
 
         .filter-buttons {
@@ -267,13 +344,16 @@
         }
 
         .filter-btn {
-            padding: 6px 12px;
+            padding: 8px 12px;
             background-color: #f8f8f8;
             border: 1px solid #ddd;
             border-radius: 20px;
             cursor: pointer;
             transition: var(--transition);
             font-size: 0.85rem;
+            flex-grow: 1;
+            text-align: center;
+            min-width: 70px;
         }
 
         .filter-btn:hover, .filter-btn.active {
@@ -287,16 +367,19 @@
             justify-content: flex-end;
             gap: 10px;
             margin-top: 10px;
+            flex-wrap: wrap;
         }
 
         .apply-filters, .reset-filters {
-            padding: 8px 16px;
+            padding: 10px 16px;
             border: none;
             border-radius: 4px;
             cursor: pointer;
             transition: var(--transition);
             font-weight: 500;
             font-size: 0.9rem;
+            flex: 1;
+            min-width: 120px;
         }
 
         .apply-filters {
@@ -654,30 +737,59 @@
         }
 
         /* Toast Notification */
-        .toast {
+        .toast-container {
             position: fixed;
             bottom: 20px;
-            right: 20px;
-            background-color: var(--accent-color);
+            left: 20px;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .toast {
+            background-color: var(--primary-color);
             color: white;
-            padding: 12px 18px;
-            border-radius: 4px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
+            padding: 15px 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             display: flex;
             align-items: center;
-            gap: 10px;
-            transform: translateX(100%);
-            transition: transform 0.3s ease;
-            max-width: 300px;
+            justify-content: space-between;
+            max-width: 350px;
+            animation: slideInLeft 0.3s ease forwards;
         }
 
-        .toast.show {
-            transform: translateX(0);
+        .toast.success {
+            background-color: #4CAF50;
         }
 
-        .toast i {
+        .toast.error {
+            background-color: #f44336;
+        }
+
+        .toast-message {
+            flex: 1;
+            margin-right: 10px;
+        }
+
+        .toast-close {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
             font-size: 1.2rem;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
         }
 
         /* زر العائمة لسلة التسوق */
@@ -719,6 +831,24 @@
             align-items: center;
             justify-content: center;
             font-weight: bold;
+        }
+
+        /* Mobile Filter Toggle Button */
+        .mobile-filter-toggle {
+            display: none;
+            width: 100%;
+            padding: 12px;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            font-weight: 500;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
         }
 
         /* Responsive */
@@ -796,17 +926,7 @@
                 padding: 20px;
                 z-index: 1000;
                 display: none;
-                box-shadow: 0 5px extreme design change: I will completely redesign the page to be mobile-first and responsive. Let me create a modern, elegant design that works beautifully on all devices.
-
- Since the user wants a mobile-friendly design with elegant product display, I'll focus on:
-
- 1. Responsive navigation with hamburger menu
- 2. Mobile-friendly product grid
- 3. Touch-friendly buttons and controls
- 4. Optimized typography for mobile
- 5. Simplified filter system for mobile
-
- Let me implement a complete redesign:px rgba(0, 0, 0, 0.1);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             }
             
             .nav-links.active {
@@ -836,6 +956,110 @@
             .newsletter-btn {
                 margin-top: 10px;
                 padding: 12px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-filter-toggle {
+                display: flex;
+            }
+            
+            .filters-section {
+                display: none;
+                margin: 10px 0;
+                padding: 12px;
+            }
+            
+            .filters-section.active {
+                display: block;
+            }
+            
+            .filter-group-content {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            }
+            
+            .filter-btn {
+                padding: 8px 10px;
+                font-size: 0.8rem;
+                min-width: 60px;
+            }
+            
+            .sort-options {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .sort-select {
+                flex-grow: 1;
+                margin-right: 10px;
+            }
+            
+            .filter-actions {
+                flex-direction: column;
+            }
+            
+            .apply-filters, .reset-filters {
+                width: 100%;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            
+            .product-img {
+                height: 180px;
+            }
+            
+            .product-content h3 {
+                font-size: 1rem;
+                height: 48px;
+            }
+            
+            .current-price {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-group-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .filter-btn {
+                min-width: auto;
+            }
+            
+            .section-title {
+                font-size: 1.3rem;
+            }
+            
+            .products-count {
+                font-size: 0.9rem;
+            }
+            
+            .pagination-btn {
+                width: 35px;
+                height: 35px;
+                font-size: 0.8rem;
+            }
+            
+            .floating-cart-btn {
+                bottom: 20px;
+                left: 20px;
+                width: 50px;
+                height: 50px;
+                font-size: 1.3rem;
+            }
+            
+            .cart-count-floating {
+                width: 20px;
+                height: 20px;
+                font-size: 0.7rem;
             }
         }
 
@@ -878,7 +1102,7 @@
 
         <nav>
             <div class="nav-container">
-                <div class="menu-toggle" id="mobile-menu">
+                <div class="hamburger-menu" id="mobile-menu">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -904,9 +1128,33 @@
         </nav>
     </header>
 
+    <!-- قائمة الهاتف -->
+    <div class="overlay" id="overlay"></div>
+    <div class="mobile-nav" id="mobileNav">
+        <span class="close-mobile-nav" id="closeMobileNav"><i class="fas fa-times"></i></span>
+        <ul class="mobile-nav-links">
+            <li><a href="index.html">الرئيسية</a></li>
+            <li><a href="kk1.html" class="active">العطور</a></li>
+            <li><a href="#">البخور</a></li>
+            <li><a href="#">مجموعات الهدايا</a></li>
+            <li><a href="#">اتصل بنا</a></li>
+            <li><a href="#">تسجيل الدخول</a></li>
+            <li><a href="#">عربة التسوق</a></li>
+        </ul>
+    </div>
+
+    <!-- زر عرض/إخفاء الفلاتر للهواتف -->
+    <div class="container">
+        <button class="mobile-filter-toggle" id="mobile-filter-toggle">
+            <i class="fas fa-filter"></i>
+            تصفية المنتجات
+            <i class="fas fa-chevron-down" id="filter-chevron"></i>
+        </button>
+    </div>
+
     <!-- نظام التصفية والفرز -->
     <section class="container">
-        <div class="filters-section">
+        <div class="filters-section" id="filters-section">
             <div class="filter-header">
                 <h2 class="filter-title">تصفية المنتجات</h2>
                 <div class="sort-options">
@@ -984,7 +1232,6 @@
             <a href="kk1.html" class="pagination-btn">1</a>
             <a href="kk2.html" class="pagination-btn">2</a>
             <a href="kk3.html" class="pagination-btn active">3</a>
-      
         </div>
     </section>
 
@@ -1052,11 +1299,8 @@
         </div>
     </footer>
 
-    <!-- Toast Notification -->
-    <div class="toast">
-        <i class="fas fa-check-circle"></i>
-        <span class="toast-message">تمت الإضافة إلى السلة بنجاح</span>
-    </div>
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
 
     <!-- زر عائم لسلة التسوق -->
     <a href="sk.html" class="floating-cart-btn">
@@ -1172,11 +1416,6 @@
             document.querySelector('.top-bar').style.display = 'none';
         });
 
-        // تحويل قائمة الهاتف
-        document.getElementById('mobile-menu').addEventListener('click', function() {
-            document.querySelector('.nav-links').classList.toggle('active');
-        });
-
         // تهيئة الفلاتر
         let activeFilters = {
             gender: 'all',
@@ -1190,7 +1429,51 @@
             setupFilterButtons();
             setupSorting();
             updateCartCount();
+            setupMobileMenu();
+            setupMobileFilterToggle();
         });
+
+        // إعداد قائمة الهاتف
+        function setupMobileMenu() {
+            const hamburgerMenu = document.getElementById('mobile-menu');
+            const mobileNav = document.getElementById('mobileNav');
+            const overlay = document.getElementById('overlay');
+            const closeMobileNav = document.getElementById('closeMobileNav');
+
+            hamburgerMenu.addEventListener('click', function() {
+                mobileNav.classList.add('active');
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+
+            function closeMobileMenu() {
+                mobileNav.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+
+            closeMobileNav.addEventListener('click', closeMobileMenu);
+            overlay.addEventListener('click', closeMobileMenu);
+        }
+
+        // إعداد زر عرض/إخفاء الفلاتر للهواتف
+        function setupMobileFilterToggle() {
+            const mobileFilterToggle = document.getElementById('mobile-filter-toggle');
+            const filtersSection = document.getElementById('filters-section');
+            const filterChevron = document.getElementById('filter-chevron');
+            
+            mobileFilterToggle.addEventListener('click', function() {
+                filtersSection.classList.toggle('active');
+                
+                if (filtersSection.classList.contains('active')) {
+                    filterChevron.classList.remove('fa-chevron-down');
+                    filterChevron.classList.add('fa-chevron-up');
+                } else {
+                    filterChevron.classList.remove('fa-chevron-up');
+                    filterChevron.classList.add('fa-chevron-down');
+                }
+            });
+        }
 
         // دالة لعرض المنتجات
         function renderProducts(productsToRender) {
@@ -1320,6 +1603,13 @@
             }
             
             renderProducts(filteredProducts);
+            
+            // إغلاق قسم الفلاتر على الهواتف بعد التطبيق
+            if (window.innerWidth <= 768) {
+                document.getElementById('filters-section').classList.remove('active');
+                document.getElementById('filter-chevron').classList.remove('fa-chevron-up');
+                document.getElementById('filter-chevron').classList.add('fa-chevron-down');
+            }
         }
 
         // إعادة تعيين الفلاتر
@@ -1391,19 +1681,12 @@
                     this.querySelector('i').classList.toggle('fas');
                     
                     const productName = this.closest('.product-card').querySelector('h3').textContent;
-                    const toast = document.querySelector('.toast');
                     
                     if (this.classList.contains('active')) {
-                        toast.querySelector('.toast-message').textContent = `تمت إضافة ${productName} إلى المفضلة`;
+                        showToast(`تمت إضافة ${productName} إلى المفضلة`);
                     } else {
-                        toast.querySelector('.toast-message').textContent = `تمت إزالة ${productName} من المفضلة`;
+                        showToast(`تمت إزالة ${productName} من المفضلة`);
                     }
-                    
-                    toast.classList.add('show');
-                    
-                    setTimeout(() => {
-                        toast.classList.remove('show');
-                    }, 3000);
                 });
             });
         }
@@ -1441,13 +1724,7 @@
             updateCartCount();
             
             // عرض إشعار
-            const toast = document.querySelector('.toast');
-            toast.querySelector('.toast-message').textContent = `تمت إضافة ${product.name} إلى السلة`;
-            toast.classList.add('show');
-            
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
+            showToast(`تمت إضافة ${product.name} إلى السلة`);
         }
 
         // تحديث عداد السلة
@@ -1469,17 +1746,35 @@
             e.preventDefault();
             const email = this.querySelector('input').value;
             
-            const toast = document.querySelector('.toast');
-            toast.querySelector('.toast-message').textContent = `شكراً لك! تم الاشتراك بالنشرة البريدية باستخدام: ${email}`;
-            toast.classList.add('show');
-            
+            showToast(`شكراً لك! تم الاشتراك بالنشرة البريدية باستخدام: ${email}`);
             this.querySelector('input').value = '';
-            
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
         });
+
+        // عرض الإشعارات
+        function showToast(message, type = 'success') {
+            const toastContainer = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            
+            toast.innerHTML = `
+                <div class="toast-message">${message}</div>
+                <button class="toast-close">&times;</button>
+            `;
+            
+            toastContainer.appendChild(toast);
+            
+            // إغلاق Toast عند النقر على الزر
+            toast.querySelector('.toast-close').addEventListener('click', function() {
+                toast.remove();
+            });
+            
+            // إزالة Toast تلقائياً بعد 5 ثوان
+            setTimeout(() => {
+                if (toast.parentNode) {
+                    toast.remove();
+                }
+            }, 5000);
+        }
     </script>
 </body>
 </html>
-
