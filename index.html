@@ -29,33 +29,35 @@
             background-color: var(--light-color);
             color: var(--text-dark);
             overflow-x: hidden;
+            font-size: 14px; /* تقليل حجم الخط الأساسي */
         }
 
         .container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 15px;
+            padding: 0 10px; /* تقليل المساحة الجانبية */
         }
 
         /* الشريط العلوي */
         .top-bar {
             background-color: var(--primary-color);
             color: var(--text-light);
-            padding: 8px 0;
+            padding: 6px 0; /* تقليل الحشوة */
             text-align: center;
-            font-size: 14px;
+            font-size: 12px; /* تصغير الخط */
             position: relative;
             animation: slideDown 0.5s ease;
         }
 
         .close-topbar {
             position: absolute;
-            left: 15px;
+            left: 10px; /* تقليل المسافة */
             top: 50%;
             transform: translateY(-50%);
             cursor: pointer;
             color: var(--gold-color);
             transition: var(--transition);
+            font-size: 12px; /* تصغير حجم الأيقونة */
         }
 
         .close-topbar:hover {
@@ -65,18 +67,20 @@
         .top-bar-text {
             max-width: 80%;
             margin: 0 auto;
+            font-size: 11px; /* تصغير النص */
+            line-height: 1.3;
         }
 
         /* شعار المتجر */
         .logo {
             font-family: 'Arabic Typesetting', serif;
-            font-size: 2rem;
+            font-size: 1.6rem; /* تصغير حجم الشعار */
             color: var(--gold-color);
             text-decoration: none;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 15px 0;
+            padding: 10px 0; /* تقليل المساحة */
             transition: var(--transition);
         }
 
@@ -85,13 +89,13 @@
         }
 
         .logo span {
-            margin: 0 10px;
+            margin: 0 5px; /* تقليل المسافة بين كلمات الشعار */
         }
 
         /* شريط التنقل */
         nav {
             background-color: var(--secondary-color);
-            padding: 15px 0;
+            padding: 10px 0; /* تقليل الحشوة */
             position: sticky;
             top: 0;
             z-index: 100;
@@ -104,7 +108,7 @@
             align-items: center;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 15px;
+            padding: 0 10px; /* تقليل المساحة الجانبية */
         }
 
         .nav-links {
@@ -114,7 +118,7 @@
         }
 
         .nav-links li {
-            margin: 0 10px;
+            margin: 0 8px; /* تقليل المسافة بين عناصر القائمة */
         }
 
         .nav-links a {
@@ -123,7 +127,7 @@
             font-weight: 500;
             transition: var(--transition);
             position: relative;
-            font-size: 0.9rem;
+            font-size: 0.8rem; /* تصغير حجم الخط */
         }
 
         .nav-links a:after {
@@ -148,8 +152,8 @@
 
         .nav-icons a {
             color: var(--text-light);
-            margin-left: 15px;
-            font-size: 1.1rem;
+            margin-left: 12px; /* تقليل المسافة بين الأيقونات */
+            font-size: 1rem; /* تصغير حجم الأيقونات */
             transition: var(--transition);
             position: relative;
         }
@@ -160,14 +164,14 @@
 
         .cart-count {
             position: absolute;
-            top: -8px;
-            right: -8px;
+            top: -6px; /* تعديل الموضع */
+            right: -6px; /* تعديل الموضع */
             background-color: var(--discount-color);
             color: white;
             border-radius: 50%;
-            width: 18px;
-            height: 18px;
-            font-size: 0.7rem;
+            width: 15px; /* تصغير الحجم */
+            height: 15px; /* تصغير الحجم */
+            font-size: 0.6rem; /* تصغير الخط */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -178,16 +182,16 @@
             background-color: var(--gold-color);
             color: var(--primary-color);
             border: none;
-            padding: 8px 15px;
+            padding: 6px 12px; /* تصغير الحجم */
             border-radius: 4px;
             font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
-            margin-left: 15px;
+            margin-left: 12px; /* تقليل المسافة */
             display: flex;
             align-items: center;
-            gap: 5px;
-            font-size: 0.9rem;
+            gap: 4px; /* تقليل المسافة بين الأيقونة والنص */
+            font-size: 0.8rem; /* تصغير الخط */
         }
 
         .login-btn:hover {
@@ -199,14 +203,14 @@
             display: none;
             flex-direction: column;
             justify-content: space-around;
-            width: 30px;
-            height: 25px;
+            width: 26px; /* تصغير الحجم */
+            height: 22px; /* تصغير الحجم */
             cursor: pointer;
         }
 
         .menu-toggle span {
             width: 100%;
-            height: 3px;
+            height: 2.5px; /* تصغير السمك */
             background-color: var(--text-light);
             border-radius: 5px;
             transition: var(--transition);
@@ -214,13 +218,13 @@
 
         /* السلايدر الإعلاني */
         .hero-slider {
-            margin: 20px 0 40px;
+            margin: 15px 0 30px; /* تقليل الهوامش */
             position: relative;
             overflow: hidden;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px; /* تقليل الزوايا المستديرة */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* تقليل الظل */
             height: 0;
-            padding-bottom: 56.25%; /* نسبة 16:9 */
+            padding-bottom: 50%; /* تغيير النسبة لتصغير الفيديو */
         }
 
         .video-container {
@@ -239,22 +243,22 @@
 
         /* أقسام المنتجات */
         .category-section {
-            margin: 50px 0;
+            margin: 30px 0; /* تقليل الهوامش */
         }
 
         .section-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 30px;
+            margin-bottom: 20px; /* تقليل المسافة */
         }
 
         .section-title {
-            font-size: 1.8rem;
+            font-size: 1.4rem; /* تصغير العنوان */
             color: var(--primary-color);
             font-family: 'Arabic Typesetting', serif;
             position: relative;
-            padding-bottom: 10px;
+            padding-bottom: 8px; /* تقليل المسافة */
         }
 
         .section-title:after {
@@ -262,8 +266,8 @@
             position: absolute;
             bottom: 0;
             right: 0;
-            width: 80px;
-            height: 3px;
+            width: 60px; /* تقليل الطول */
+            height: 2px; /* تقليل السمك */
             background-color: var(--gold-color);
         }
 
@@ -274,110 +278,113 @@
             transition: var(--transition);
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 4px; /* تقليل المسافة */
+            font-size: 0.9rem; /* تصغير الخط */
         }
 
         .view-all:hover {
             color: var(--primary-color);
-            gap: 10px;
+            gap: 6px; /* تقليل المسافة عند التمرير */
         }
 
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(2, 1fr); /* عرض عمودين بدلاً من عمود واحد */
+            gap: 12px; /* تقليل المسافة بين المنتجات */
         }
 
         .product-card {
             background-color: white;
-            border-radius: 8px;
+            border-radius: 6px; /* تقليل الزوايا المستديرة */
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08); /* تقليل الظل */
             transition: var(--transition);
             position: relative;
         }
 
         .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            transform: translateY(-3px); /* تقليل تأثير الرفع */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12); /* تقليل الظل */
         }
 
         .product-badge {
             position: absolute;
-            top: 10px;
-            left: 10px;
+            top: 8px; /* تقليل المسافة */
+            left: 8px; /* تقليل المسافة */
             background-color: var(--discount-color);
             color: white;
-            padding: 5px 10px;
-            border-radius: 4px;
-            font-size: 0.8rem;
+            padding: 4px 8px; /* تقليل الحشوة */
+            border-radius: 3px; /* تقليل الزوايا */
+            font-size: 0.7rem; /* تصغير الخط */
             font-weight: bold;
             z-index: 10;
             animation: pulse 2s infinite;
         }
 
         .product-img {
-            height: 200px;
+            height: 160px; /* تقليل ارتفاع الصورة */
             width: 100%;
             object-fit: cover;
             transition: var(--transition);
         }
 
         .product-card:hover .product-img {
-            transform: scale(1.05);
+            transform: scale(1.03); /* تقليل تأثير التكبير */
         }
 
         .product-content {
-            padding: 15px;
+            padding: 12px; /* تقليل الحشوة الداخلية */
         }
 
         .product-content h3 {
-            margin-bottom: 10px;
+            margin-bottom: 8px; /* تقليل المسافة */
             color: var(--primary-color);
-            font-size: 1.1rem;
-            height: 52px;
+            font-size: 0.95rem; /* تصغير الخط */
+            height: 44px; /* تقليل الارتفاع */
             overflow: hidden;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
+            line-height: 1.3; /* تقليل ارتفاع السطر */
         }
 
         .product-type {
             color: var(--secondary-color);
-            font-size: 0.9rem;
-            margin-bottom: 10px;
+            font-size: 0.8rem; /* تصغير الخط */
+            margin-bottom: 8px; /* تقليل المسافة */
         }
 
         .product-price {
             display: flex;
             align-items: center;
-            gap: 10px;
-            margin-bottom: 15px;
+            gap: 8px; /* تقليل المسافة */
+            margin-bottom: 12px; /* تقليل المسافة */
         }
 
         .current-price {
             font-weight: bold;
             color: var(--accent-color);
-            font-size: 1.1rem;
+            font-size: 0.95rem; /* تصغير الخط */
         }
 
         .original-price {
             text-decoration: line-through;
             color: #999;
-            font-size: 0.9rem;
+            font-size: 0.8rem; /* تصغير الخط */
         }
 
         .product-rating {
             color: var(--gold-color);
-            margin-bottom: 15px;
+            margin-bottom: 12px; /* تقليل المسافة */
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 4px; /* تقليل المسافة */
+            font-size: 0.8rem; /* تصغير الخط */
         }
 
         .product-actions {
             display: flex;
-            gap: 10px;
+            gap: 8px; /* تقليل المسافة بين الأزرار */
         }
 
         .add-to-cart {
@@ -385,15 +392,15 @@
             background-color: var(--accent-color);
             color: white;
             border: none;
-            padding: 10px;
+            padding: 8px; /* تقليل الحشوة */
             border-radius: 4px;
             cursor: pointer;
             transition: var(--transition);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 5px;
-            font-size: 0.9rem;
+            gap: 4px; /* تقليل المسافة */
+            font-size: 0.8rem; /* تصغير الخط */
         }
 
         .add-to-cart:hover {
@@ -402,8 +409,8 @@
         }
 
         .wishlist-btn {
-            width: 40px;
-            height: 40px;
+            width: 34px; /* تصغير الحجم */
+            height: 34px; /* تصغير الحجم */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -412,6 +419,7 @@
             border-radius: 4px;
             cursor: pointer;
             transition: var(--transition);
+            font-size: 0.9rem; /* تصغير حجم الأيقونة */
         }
 
         .wishlist-btn:hover {
@@ -429,21 +437,22 @@
         .newsletter {
             background-color: var(--primary-color);
             color: white;
-            padding: 40px 0;
+            padding: 30px 0; /* تقليل الحشوة */
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 30px; /* تقليل الهوامش */
         }
 
         .newsletter h2 {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
+            font-size: 1.4rem; /* تصغير العنوان */
+            margin-bottom: 12px; /* تقليل المسافة */
             font-family: 'Arabic Typesetting', serif;
         }
 
         .newsletter p {
             max-width: 600px;
-            margin: 0 auto 20px;
-            font-size: 1rem;
+            margin: 0 auto 15px; /* تقليل المسافة */
+            font-size: 0.9rem; /* تصغير الخط */
+            line-height: 1.5;
         }
 
         .newsletter-form {
@@ -454,20 +463,21 @@
 
         .newsletter-input {
             flex: 1;
-            padding: 12px 15px;
+            padding: 10px 12px; /* تقليل الحشوة */
             border: none;
             border-radius: 4px 0 0 4px;
-            font-size: 1rem;
+            font-size: 0.9rem; /* تصغير الخط */
         }
 
         .newsletter-btn {
-            padding: 0 20px;
+            padding: 0 16px; /* تقليل الحشوة */
             background-color: var(--accent-color);
             color: white;
             border: none;
             border-radius: 0 4px 4px 0;
             cursor: pointer;
             transition: var(--transition);
+            font-size: 0.9rem; /* تصغير الخط */
         }
 
         .newsletter-btn:hover {
@@ -478,21 +488,21 @@
         footer {
             background-color: var(--primary-color);
             color: var(--text-light);
-            padding: 40px 0 20px;
+            padding: 30px 0 15px; /* تقليل الحشوة */
         }
 
         .footer-content {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 30px;
+            gap: 20px; /* تقليل المسافة */
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 15px;
+            padding: 0 10px; /* تقليل المساحة الجانبية */
         }
 
         .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 15px;
+            font-size: 1.1rem; /* تصغير العنوان */
+            margin-bottom: 12px; /* تقليل المسافة */
             color: var(--gold-color);
             font-family: 'Arabic Typesetting', serif;
         }
@@ -502,7 +512,7 @@
         }
 
         .footer-links li {
-            margin-bottom: 8px;
+            margin-bottom: 6px; /* تقليل المسافة */
             display: flex;
             align-items: center;
         }
@@ -511,67 +521,69 @@
             color: var(--text-light);
             text-decoration: none;
             transition: var(--transition);
-            font-size: 0.9rem;
+            font-size: 0.85rem; /* تصغير الخط */
         }
 
         .footer-links a:hover {
             color: var(--gold-color);
-            padding-right: 5px;
+            padding-right: 3px; /* تقليل المسافة */
         }
 
         .footer-links i {
-            margin-left: 8px;
-            width: 20px;
+            margin-left: 6px; /* تقليل المسافة */
+            width: 16px; /* تصغير العرض */
         }
 
         .social-icons {
             display: flex;
-            gap: 15px;
-            margin-top: 15px;
+            gap: 12px; /* تقليل المسافة */
+            margin-top: 12px; /* تقليل المسافة */
         }
 
         .social-icons a {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 35px;
-            height: 35px;
+            width: 32px; /* تصغير الحجم */
+            height: 32px; /* تصغير الحجم */
             background-color: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
             color: var(--text-light);
             transition: var(--transition);
+            font-size: 0.9rem; /* تصغير حجم الأيقونة */
         }
 
         .social-icons a:hover {
             background-color: var(--gold-color);
-            transform: translateY(-3px);
+            transform: translateY(-2px);
         }
 
         .copyright {
             text-align: center;
-            padding-top: 20px;
-            margin-top: 20px;
+            padding-top: 15px; /* تقليل الحشوة */
+            margin-top: 15px; /* تقليل المسافة */
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.9rem;
+            font-size: 0.8rem; /* تصغير الخط */
         }
 
         /* Toast Notification */
         .toast {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
+            bottom: 15px; /* تقليل المسافة */
+            right: 15px; /* تقليل المسافة */
             background-color: var(--accent-color);
             color: white;
-            padding: 12px 18px;
+            padding: 10px 15px; /* تقليل الحشوة */
             border-radius: 4px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* تقليل الظل */
             z-index: 1000;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px; /* تقليل المسافة */
             transform: translateX(100%);
             transition: transform 0.3s ease;
-            max-width: 300px;
+            max-width: 280px; /* تصغير العرض الأقصى */
+            font-size: 0.9rem; /* تصغير الخط */
         }
 
         .toast.show {
@@ -579,13 +591,14 @@
         }
 
         .toast i {
-            font-size: 1.2rem;
+            font-size: 1rem; /* تصغير حجم الأيقونة */
         }
 
         /* Responsive */
         @media (min-width: 576px) {
             .products-grid {
-                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+                grid-template-columns: repeat(2, 1fr); /* الحفاظ على عمودين */
+                gap: 15px; /* زيادة المسافة قليلاً */
             }
             
             .footer-content {
@@ -599,7 +612,7 @@
             }
             
             .logo {
-                font-size: 2.5rem;
+                font-size: 2rem; /* زيادة حجم الشعار */
             }
             
             .newsletter-form {
@@ -618,6 +631,10 @@
             .footer-content {
                 grid-template-columns: repeat(2, 1fr);
             }
+            
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr); /* 3 أعمدة للشاشات المتوسطة */
+            }
         }
 
         @media (min-width: 992px) {
@@ -631,6 +648,10 @@
             
             .footer-content {
                 grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(4, 1fr); /* 4 أعمدة للشاشات الكبيرة */
             }
         }
 
@@ -646,10 +667,10 @@
                 width: 100%;
                 background-color: var(--secondary-color);
                 flex-direction: column;
-                padding: 20px;
+                padding: 15px; /* تقليل الحشوة */
                 z-index: 1000;
                 display: none;
-                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* تقليل الظل */
             }
             
             .nav-links.active {
@@ -657,14 +678,14 @@
             }
             
             .nav-links li {
-                margin: 10px 0;
+                margin: 8px 0; /* تقليل المسافة */
                 text-align: center;
             }
             
             .section-header {
                 flex-direction: column;
                 align-items: flex-start;
-                gap: 10px;
+                gap: 8px; /* تقليل المسافة */
             }
             
             .newsletter-form {
@@ -677,14 +698,14 @@
             }
             
             .newsletter-btn {
-                margin-top: 10px;
-                padding: 12px;
+                margin-top: 8px; /* تقليل المسافة */
+                padding: 10px; /* تقليل الحشوة */
             }
         }
 
         /* Animation */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(15px); } /* تقليل المسافة */
             to { opacity: 1; transform: translateY(0); }
         }
 
@@ -695,12 +716,12 @@
 
         @keyframes pulse {
             0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+            50% { transform: scale(1.03); } /* تقليل التأثير */
             100% { transform: scale(1); }
         }
 
         .animate {
-            animation: fadeIn 0.5s ease forwards;
+            animation: fadeIn 0.4s ease forwards; /* تقليل المدة */
         }
     </style>
 </head>
