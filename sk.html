@@ -16,8 +16,8 @@
             --gold-color: #D4AF37;
             --discount-color: #E74C3C;
             --transition: all 0.3s ease;
-            --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            --elevated-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+            --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --elevated-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
         }
 
         * {
@@ -32,35 +32,36 @@
             color: var(--text-dark);
             overflow-x: hidden;
             line-height: 1.6;
+            font-size: 14px;
         }
 
         .container {
-            max-width: 1400px;
+            width: 100%;
             margin: 0 auto;
-            padding: 0 16px;
+            padding: 0 12px;
         }
 
         /* الشريط العلوي - تصميم مبسط للجوال */
         .top-bar {
             background-color: var(--primary-color);
             color: var(--text-light);
-            padding: 10px 0;
+            padding: 8px 0;
             text-align: center;
-            font-size: 13px;
+            font-size: 12px;
             position: relative;
             animation: slideDown 0.5s ease;
         }
 
         .close-topbar {
             position: absolute;
-            left: 15px;
+            left: 12px;
             top: 50%;
             transform: translateY(-50%);
             cursor: pointer;
             color: var(--gold-color);
             transition: var(--transition);
-            width: 24px;
-            height: 24px;
+            width: 20px;
+            height: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -69,74 +70,62 @@
         /* شعار المتجر - حجم مناسب للجوال */
         .logo {
             font-family: 'Arabic Typesetting', serif;
-            font-size: 2rem;
+            font-size: 1.5rem;
             color: var(--gold-color);
             text-decoration: none;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 12px 0;
+            padding: 10px 0;
             transition: var(--transition);
         }
 
         .logo span {
-            margin: 0 8px;
+            margin: 0 5px;
         }
 
         /* شريط التنقل - تصميم متجاوب */
         nav {
             background-color: var(--secondary-color);
-            padding: 12px 0;
+            padding: 10px 0;
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
         }
 
         .nav-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1200px;
+            width: 100%;
             margin: 0 auto;
-            padding: 0 16px;
+            padding: 0 12px;
         }
 
         .nav-links {
-            display: flex;
-            list-style: none;
-        }
-
-        .nav-links li {
-            margin: 0 12px;
-        }
-
-        .nav-links a {
-            color: var(--text-light);
-            text-decoration: none;
-            font-weight: 500;
-            transition: var(--transition);
-            position: relative;
-            font-size: 15px;
+            display: none; /* سيتم إخفاء الروابط على الجوال */
         }
 
         .nav-icons {
             display: flex;
             align-items: center;
+            width: 100%;
+            justify-content: space-between;
         }
 
         .nav-icons a {
             color: var(--text-light);
-            margin-left: 16px;
-            font-size: 1.1rem;
+            font-size: 1rem;
             transition: var(--transition);
             position: relative;
+            padding: 8px;
         }
 
         .cart-count {
             position: absolute;
-            top: -6px;
-            right: -6px;
+            top: -2px;
+            right: -2px;
             background-color: var(--discount-color);
             color: white;
             border-radius: 50%;
@@ -150,17 +139,16 @@
 
         /* قائمة الهاتف المحمول (هامبرجر) */
         .hamburger-menu {
-            display: none;
+            display: flex;
             flex-direction: column;
             justify-content: space-around;
-            width: 28px;
-            height: 22px;
+            width: 24px;
+            height: 20px;
             cursor: pointer;
-            order: 2;
         }
 
         .hamburger-menu span {
-            height: 2.5px;
+            height: 2px;
             width: 100%;
             background-color: var(--text-light);
             border-radius: 2px;
@@ -175,9 +163,10 @@
             height: 100vh;
             background-color: var(--primary-color);
             z-index: 1000;
-            padding: 70px 20px 20px;
+            padding: 70px 16px 20px;
             transition: var(--transition);
             box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+            overflow-y: auto;
         }
 
         .mobile-nav.active {
@@ -189,13 +178,13 @@
         }
 
         .mobile-nav-links li {
-            margin-bottom: 16px;
+            margin-bottom: 12px;
         }
 
         .mobile-nav-links a {
             color: var(--text-light);
             text-decoration: none;
-            font-size: 1.1rem;
+            font-size: 1rem;
             display: block;
             padding: 12px;
             border-radius: 6px;
@@ -208,10 +197,10 @@
 
         .close-mobile-nav {
             position: absolute;
-            top: 20px;
-            left: 20px;
+            top: 16px;
+            left: 16px;
             color: var(--text-light);
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             cursor: pointer;
             width: 30px;
             height: 30px;
@@ -242,31 +231,32 @@
         .cart-container {
             display: flex;
             flex-direction: column;
-            gap: 24px;
-            margin: 32px 0;
+            gap: 16px;
+            margin: 20px 0;
         }
 
         .cart-items {
             background-color: white;
-            border-radius: 12px;
-            padding: 20px;
+            border-radius: 10px;
+            padding: 16px;
             box-shadow: var(--card-shadow);
         }
 
         .cart-title {
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             color: var(--primary-color);
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             font-family: 'Arabic Typesetting', serif;
             border-bottom: 2px solid var(--gold-color);
-            padding-bottom: 10px;
+            padding-bottom: 8px;
+            text-align: center;
         }
 
         /* تصميم حديث لعناصر السلة للجوال */
         .cart-item {
             display: flex;
             flex-direction: column;
-            padding: 16px 0;
+            padding: 12px 0;
             border-bottom: 1px solid #eee;
             position: relative;
         }
@@ -277,7 +267,7 @@
 
         .cart-item-content {
             display: flex;
-            gap: 12px;
+            gap: 10px;
         }
 
         .cart-item-img-container {
@@ -285,8 +275,8 @@
         }
 
         .cart-item-img {
-            width: 90px;
-            height: 90px;
+            width: 80px;
+            height: 80px;
             object-fit: cover;
             border-radius: 8px;
         }
@@ -299,30 +289,30 @@
         }
 
         .cart-item-name {
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: var(--primary-color);
-            margin-bottom: 6px;
+            margin-bottom: 4px;
             font-weight: 600;
         }
 
         .cart-item-type {
             color: var(--secondary-color);
-            font-size: 0.85rem;
-            margin-bottom: 8px;
+            font-size: 0.8rem;
+            margin-bottom: 6px;
         }
 
         .cart-item-price {
             font-weight: bold;
             color: var(--accent-color);
-            font-size: 1rem;
-            margin-bottom: 12px;
+            font-size: 0.95rem;
+            margin-bottom: 8px;
         }
 
         .cart-item-controls {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 12px;
+            margin-top: 10px;
         }
 
         .quantity-controls {
@@ -334,12 +324,12 @@
         }
 
         .quantity-btn {
-            width: 36px;
-            height: 36px;
+            width: 32px;
+            height: 32px;
             background: #f8f8f8;
             border: none;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 0.9rem;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -352,13 +342,13 @@
         }
 
         .quantity-input {
-            width: 42px;
-            height: 36px;
+            width: 36px;
+            height: 32px;
             text-align: center;
             border: none;
             border-left: 1px solid #ddd;
             border-right: 1px solid #ddd;
-            font-size: 1rem;
+            font-size: 0.9rem;
         }
 
         .remove-item {
@@ -366,12 +356,12 @@
             background: none;
             border: none;
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 4px;
             transition: var(--transition);
-            padding: 8px 12px;
+            padding: 6px 10px;
             border-radius: 6px;
         }
 
@@ -382,30 +372,31 @@
 
         .cart-empty {
             text-align: center;
-            padding: 40px 0;
+            padding: 30px 0;
         }
 
         .cart-empty i {
-            font-size: 3.5rem;
+            font-size: 3rem;
             color: #ddd;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
         }
 
         .cart-empty p {
-            font-size: 1.1rem;
-            margin-bottom: 20px;
+            font-size: 1rem;
+            margin-bottom: 16px;
             color: var(--secondary-color);
         }
 
         .continue-shopping {
             display: inline-block;
-            padding: 12px 24px;
+            padding: 10px 20px;
             background-color: var(--accent-color);
             color: white;
             text-decoration: none;
             border-radius: 6px;
             transition: var(--transition);
             font-weight: 500;
+            font-size: 0.9rem;
         }
 
         .continue-shopping:hover {
@@ -416,37 +407,39 @@
         /* ملخص الطلب - تصميم عصري للجوال */
         .order-summary {
             background-color: white;
-            border-radius: 12px;
-            padding: 20px;
+            border-radius: 10px;
+            padding: 16px;
             box-shadow: var(--card-shadow);
+            margin-top: 10px;
             position: sticky;
-            bottom: 20px;
-            margin-top: 20px;
+            bottom: 0;
+            z-index: 10;
         }
 
         .summary-title {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             color: var(--primary-color);
-            margin-bottom: 18px;
+            margin-bottom: 14px;
             font-family: 'Arabic Typesetting', serif;
             border-bottom: 2px solid var(--gold-color);
-            padding-bottom: 8px;
+            padding-bottom: 6px;
+            text-align: center;
         }
 
         .summary-row {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 14px;
+            margin-bottom: 10px;
         }
 
         .summary-label {
             color: var(--secondary-color);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
         .summary-value {
             font-weight: 500;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
         .discount-value {
@@ -455,9 +448,9 @@
 
         .summary-total {
             border-top: 1px solid #eee;
-            padding-top: 14px;
-            margin-top: 10px;
-            font-size: 1.1rem;
+            padding-top: 12px;
+            margin-top: 8px;
+            font-size: 1rem;
             font-weight: bold;
         }
 
@@ -472,19 +465,19 @@
         .coupon-form {
             display: flex;
             flex-direction: column;
-            margin: 18px 0;
-            gap: 10px;
+            margin: 14px 0;
+            gap: 8px;
         }
 
         .coupon-input {
-            padding: 12px 16px;
+            padding: 10px 14px;
             border: 1px solid #ddd;
             border-radius: 6px;
-            font-size: 1rem;
+            font-size: 0.9rem;
         }
 
         .coupon-btn {
-            padding: 12px 16px;
+            padding: 10px 14px;
             background-color: var(--secondary-color);
             color: white;
             border: none;
@@ -492,6 +485,7 @@
             cursor: pointer;
             transition: var(--transition);
             font-weight: 500;
+            font-size: 0.9rem;
         }
 
         .coupon-btn:hover {
@@ -501,16 +495,16 @@
         .checkout-btn {
             display: block;
             width: 100%;
-            padding: 16px;
+            padding: 14px;
             background-color: var(--accent-color);
             color: white;
             border: none;
             border-radius: 8px;
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: bold;
             cursor: pointer;
             transition: var(--transition);
-            margin-top: 18px;
+            margin-top: 14px;
             text-align: center;
             box-shadow: var(--elevated-shadow);
         }
@@ -524,52 +518,54 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            margin-top: 14px;
+            gap: 6px;
+            margin-top: 10px;
             color: var(--secondary-color);
-            font-size: 0.85rem;
+            font-size: 0.8rem;
         }
 
         /* Newsletter - تصميم مبسط للجوال */
         .newsletter {
             background-color: var(--primary-color);
             color: white;
-            padding: 50px 0;
+            padding: 40px 0;
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
         }
 
         .newsletter h2 {
-            font-size: 1.8rem;
-            margin-bottom: 16px;
+            font-size: 1.4rem;
+            margin-bottom: 12px;
             font-family: 'Arabic Typesetting', serif;
             border-bottom: 2px solid var(--gold-color);
-            padding-bottom: 8px;
+            padding-bottom: 6px;
         }
 
         .newsletter p {
-            max-width: 600px;
-            margin: 0 auto 24px;
-            font-size: 1rem;
+            max-width: 100%;
+            margin: 0 auto 20px;
+            font-size: 0.9rem;
+            padding: 0 10px;
         }
 
         .newsletter-form {
             display: flex;
             flex-direction: column;
-            max-width: 500px;
+            max-width: 100%;
             margin: 0 auto;
-            gap: 10px;
+            gap: 8px;
+            padding: 0 10px;
         }
 
         .newsletter-input {
-            padding: 14px 18px;
+            padding: 12px 14px;
             border: none;
             border-radius: 6px;
-            font-size: 1rem;
+            font-size: 0.9rem;
         }
 
         .newsletter-btn {
-            padding: 14px 18px;
+            padding: 12px 14px;
             background-color: var(--accent-color);
             color: white;
             border: none;
@@ -577,6 +573,7 @@
             cursor: pointer;
             transition: var(--transition);
             font-weight: 500;
+            font-size: 0.9rem;
         }
 
         .newsletter-btn:hover {
@@ -587,21 +584,21 @@
         footer {
             background-color: var(--primary-color);
             color: var(--text-light);
-            padding: 40px 0 16px;
+            padding: 30px 0 12px;
         }
 
         .footer-content {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 28px;
-            max-width: 1200px;
+            gap: 20px;
+            width: 100%;
             margin: 0 auto;
-            padding: 0 16px;
+            padding: 0 12px;
         }
 
         .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 16px;
+            font-size: 1.1rem;
+            margin-bottom: 12px;
             color: var(--gold-color);
             font-family: 'Arabic Typesetting', serif;
         }
@@ -611,14 +608,15 @@
         }
 
         .footer-links li {
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
         }
 
         .footer-links a {
             color: var(--text-light);
             text-decoration: none;
             transition: var(--transition);
-            font-size: 0.95rem;
+            font-size: 0.85rem;
         }
 
         .footer-links a:hover {
@@ -628,8 +626,8 @@
 
         .social-icons {
             display: flex;
-            gap: 12px;
-            margin-top: 16px;
+            gap: 10px;
+            margin-top: 12px;
             justify-content: center;
         }
 
@@ -637,12 +635,13 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 38px;
-            height: 38px;
+            width: 34px;
+            height: 34px;
             background-color: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
             color: var(--text-light);
             transition: var(--transition);
+            font-size: 0.9rem;
         }
 
         .social-icons a:hover {
@@ -652,27 +651,27 @@
 
         .copyright {
             text-align: center;
-            padding-top: 28px;
-            margin-top: 28px;
+            padding-top: 20px;
+            margin-top: 20px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.9rem;
+            font-size: 0.8rem;
         }
 
         /* Toast Notification - تصميم عصري */
         .toast {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            left: 20px;
+            bottom: 16px;
+            right: 16px;
+            left: 16px;
             background-color: var(--accent-color);
             color: white;
-            padding: 14px 18px;
+            padding: 12px 14px;
             border-radius: 8px;
             box-shadow: var(--elevated-shadow);
             z-index: 1000;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             transform: translateY(100px);
             opacity: 0;
             transition: transform 0.3s ease, opacity 0.3s ease;
@@ -684,19 +683,20 @@
         }
 
         .toast i {
-            font-size: 1.2rem;
+            font-size: 1rem;
         }
 
         /* تحسينات للشاشات المتوسطة والكبيرة */
         @media (min-width: 768px) {
             .container {
-                padding: 0 20px;
+                padding: 0 16px;
+                max-width: 720px;
             }
             
             .cart-container {
                 display: grid;
-                grid-template-columns: 1fr 350px;
-                gap: 30px;
+                grid-template-columns: 1fr 300px;
+                gap: 20px;
             }
             
             .order-summary {
@@ -704,6 +704,7 @@
                 top: 100px;
                 bottom: auto;
                 margin-top: 0;
+                height: fit-content;
             }
             
             .footer-content {
@@ -712,9 +713,11 @@
             
             .newsletter-form {
                 flex-direction: row;
+                max-width: 500px;
             }
             
             .newsletter-input {
+                flex: 1;
                 border-radius: 6px 0 0 6px;
             }
             
@@ -726,6 +729,10 @@
                 flex-direction: row;
             }
             
+            .coupon-input {
+                flex: 1;
+            }
+            
             .toast {
                 left: auto;
                 right: 20px;
@@ -735,6 +742,10 @@
         }
 
         @media (min-width: 992px) {
+            .container {
+                max-width: 960px;
+            }
+            
             .footer-content {
                 grid-template-columns: repeat(4, 1fr);
             }
@@ -748,10 +759,16 @@
             }
         }
 
+        @media (min-width: 1200px) {
+            .container {
+                max-width: 1140px;
+            }
+        }
+
         /* تحسينات للشاشات الصغيرة جداً */
         @media (max-width: 380px) {
             .logo {
-                font-size: 1.7rem;
+                font-size: 1.3rem;
             }
             
             .cart-item-content {
@@ -761,18 +778,26 @@
             }
             
             .cart-item-img {
-                width: 120px;
-                height: 120px;
+                width: 100px;
+                height: 100px;
             }
             
             .cart-item-controls {
                 flex-direction: column;
-                gap: 12px;
+                gap: 10px;
             }
             
             .quantity-controls {
                 width: 100%;
                 justify-content: center;
+            }
+            
+            .cart-title {
+                font-size: 1.2rem;
+            }
+            
+            .summary-title {
+                font-size: 1.1rem;
             }
         }
 
