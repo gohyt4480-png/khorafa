@@ -166,7 +166,7 @@
             justify-content: center;
         }
 
-        /* قائمة الهاتف المحمول (هامبرجر) */
+        /* قائمة الهاتف المحمول (هامبرجر) - تم نقله لليمين */
         .hamburger-menu {
             display: none;
             flex-direction: column;
@@ -174,6 +174,7 @@
             width: 30px;
             height: 25px;
             cursor: pointer;
+            order: 2; /* جعلها تظهر على اليمين */
         }
 
         .hamburger-menu span {
@@ -280,13 +281,14 @@
             padding-bottom: 10px;
         }
 
+        /* تعديل تخطيط عناصر السلة */
         .cart-item {
             display: grid;
-            grid-template-columns: 120px 1fr;
-            gap: 20px;
+            grid-template-columns: 100px 1fr auto;
+            gap: 15px;
             padding: 20px 0;
             border-bottom: 1px solid #eee;
-            position: relative;
+            align-items: center;
         }
 
         .cart-item:last-child {
@@ -295,7 +297,7 @@
 
         .cart-item-img {
             width: 100%;
-            height: 120px;
+            height: 100px;
             object-fit: cover;
             border-radius: 8px;
         }
@@ -303,11 +305,11 @@
         .cart-item-details {
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: center;
         }
 
         .cart-item-name {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: var(--primary-color);
             margin-bottom: 8px;
         }
@@ -321,28 +323,23 @@
         .cart-item-price {
             font-weight: bold;
             color: var(--accent-color);
-            font-size: 1.1rem;
-            margin-bottom: 15px;
+            font-size: 1rem;
         }
 
         .cart-item-controls {
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
-            gap: 10px;
-            position: absolute;
-            left: 25px;
-            top: 20px;
+            align-items: center;
+            gap: 15px;
         }
 
         .quantity-controls {
             display: flex;
+            flex-direction: column;
             align-items: center;
             border: 1px solid #ddd;
             border-radius: 4px;
             overflow: hidden;
-            background: white;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
         .quantity-btn {
@@ -368,8 +365,8 @@
             height: 32px;
             text-align: center;
             border: none;
-            border-left: 1px solid #ddd;
-            border-right: 1px solid #ddd;
+            border-top: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
             font-size: 1rem;
         }
 
@@ -385,12 +382,11 @@
             transition: var(--transition);
             padding: 5px 10px;
             border-radius: 4px;
-            background: rgba(231, 76, 60, 0.1);
         }
 
         .remove-item:hover {
             color: #c0392b;
-            background: rgba(231, 76, 60, 0.2);
+            background-color: rgba(231, 76, 60, 0.1);
         }
 
         .cart-empty {
@@ -633,7 +629,6 @@
             display: flex;
             gap: 15px;
             margin-top: 20px;
-            justify-content: center;
         }
 
         .social-icons a {
@@ -673,28 +668,34 @@
             .cart-container {
                 grid-template-columns: 1fr;
             }
+            
+            /* إعادة ترتيب عناصر شريط التنقل */
+            .nav-container {
+                flex-direction: row-reverse; /* لجعل الأيقونات على اليسار والهامبرغر على اليمين */
+            }
+            
+            .nav-icons {
+                order: 1; /* الأيقونات تظهر أولاً على اليسار */
+            }
         }
 
         @media (max-width: 768px) {
             .cart-item {
-                grid-template-columns: 100px 1fr;
-                gap: 15px;
-            }
-            
-            .cart-item-img {
-                height: 100px;
+                grid-template-columns: 80px 1fr;
+                grid-template-rows: auto auto;
+                gap: 10px;
             }
             
             .cart-item-controls {
-                position: static;
+                grid-column: 1 / 3;
                 flex-direction: row;
-                justify-content: flex-start;
-                width: 100%;
-                margin-top: 15px;
+                justify-content: center;
+                margin-top: 10px;
             }
             
-            .cart-item-details {
-                grid-column: 1 / span 2;
+            .cart-item-img {
+                width: 80px;
+                height: 80px;
             }
             
             .newsletter-form {
@@ -746,13 +747,8 @@
                 width: 100%;
             }
             
-            .cart-item {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            
             .cart-item-controls {
-                justify-content: center;
+                flex-direction: column;
             }
         }
 
@@ -821,14 +817,7 @@
 
         <nav>
             <div class="nav-container">
-                <ul class="nav-links">
-                    <li><a href="index.html">الرئيسية</a></li>
-                    <li><a href="kk1.html">العطور</a></li>
-                    <li><a href="#">البخور</a></li>
-                    <li><a href="#">مجموعات الهدايا</a></li>
-                    <li><a href="#">اتصل بنا</a></li>
-                </ul>
-
+                <!-- تم نقل الأيقونات لليسار -->
                 <div class="nav-icons">
                     <a href="#"><i class="fas fa-search"></i></a>
                     <a href="#"><i class="fas fa-user"></i></a>
@@ -838,7 +827,15 @@
                     </a>
                 </div>
                 
-                <!-- قائمة الهاتف المحمول (هامبرجر) -->
+                <ul class="nav-links">
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="kk1.html">العطور</a></li>
+                    <li><a href="#">البخور</a></li>
+                    <li><a href="#">مجموعات الهدايا</a></li>
+                    <li><a href="#">اتصل بنا</a></li>
+                </ul>
+                
+                <!-- قائمة الهاتف المحمول (هامبرجر) - تم نقلها لليمين -->
                 <div class="hamburger-menu">
                     <span></span>
                     <span></span>
@@ -869,52 +866,14 @@
         
         <div class="cart-container">
             <div class="cart-items">
-                <div id="cart-items-container">
-                    <!-- عناصر سلة التسوق التجريبية -->
-                    <div class="cart-item">
-                        <img src="https://via.placeholder.com/120x120" alt="عطر مميز" class="cart-item-img">
-                        <div class="cart-item-details">
-                            <h3 class="cart-item-name">عطر خرافة الأسود</h3>
-                            <div class="cart-item-type">عطر رجالي - 100 مل</div>
-                            <div class="cart-item-price">
-                                <span class="current-price">249 ر.س</span>
-                            </div>
-                        </div>
-                        <div class="cart-item-controls">
-                            <div class="quantity-controls">
-                                <button class="quantity-btn decrease">-</button>
-                                <input type="number" class="quantity-input" value="1" min="1">
-                                <button class="quantity-btn increase">+</button>
-                            </div>
-                            <button class="remove-item">
-                                <i class="fas fa-trash"></i>
-                                إزالة
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <div class="cart-item">
-                        <img src="https://via.placeholder.com/120x120" alt="عطر مميز" class="cart-item-img">
-                        <div class="cart-item-details">
-                            <h3 class="cart-item-name">عطر خرافة الذهبي</h3>
-                            <div class="cart-item-type">عطر نسائي - 50 مل</div>
-                            <div class="cart-item-price">
-                                <span class="current-price">199 ر.س</span>
-                                <span class="original-price" style="text-decoration: line-through; color: #999; margin-right: 10px;">249 ر.س</span>
-                            </div>
-                        </div>
-                        <div class="cart-item-controls">
-                            <div class="quantity-controls">
-                                <button class="quantity-btn decrease">-</button>
-                                <input type="number" class="quantity-input" value="2" min="1">
-                                <button class="quantity-btn increase">+</button>
-                            </div>
-                            <button class="remove-item">
-                                <i class="fas fa-trash"></i>
-                                إزالة
-                            </button>
-                        </div>
-                    </div>
+                <div id="cart-items-container" style="display: none;">
+                    <!-- العناصر ستضاف هنا ديناميكيًا -->
+                </div>
+                
+                <div id="empty-cart-message" class="cart-empty">
+                    <i class="fas fa-shopping-cart"></i>
+                    <p>سلة التسوق الخاصة بك فارغة</p>
+                    <a href="kk1.html" class="continue-shopping">مواصلة التسوق</a>
                 </div>
             </div>
             
@@ -923,22 +882,22 @@
                 
                 <div class="summary-row">
                     <span class="summary-label">المجموع الفرعي</span>
-                    <span class="summary-value" id="subtotal">647 ر.س</span>
+                    <span class="summary-value" id="subtotal">0 ر.س</span>
                 </div>
                 
                 <div class="summary-row">
                     <span class="summary-label">التخفيض</span>
-                    <span class="summary-value discount-value">-50 ر.س</span>
+                    <span class="summary-value discount-value" id="discount">0 ر.س</span>
                 </div>
                 
                 <div class="summary-row">
                     <span class="summary-label">تكلفة الشحن</span>
-                    <span class="summary-value" id="shipping">25 ر.س</span>
+                    <span class="summary-value" id="shipping">0 ر.س</span>
                 </div>
                 
                 <div class="summary-row summary-total">
                     <span class="total-label">الإجمالي</span>
-                    <span class="total-value" id="total">622 ر.س</span>
+                    <span class="total-value" id="total">0 ر.س</span>
                 </div>
                 
                 <div class="coupon-form">
@@ -1027,9 +986,40 @@
     </div>
 
     <script>
+        // بيانات المنتجات في السلة (سيتم تحميلها من localStorage)
+        let cartItems = [];
+        let appliedCoupon = null;
+
         // إغلاق الشريط العلوي
         document.querySelector('.close-topbar').addEventListener('click', function() {
             document.querySelector('.top-bar').style.display = 'none';
+        });
+
+        // تهيئة سلة التسوق عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            loadCartFromStorage();
+            renderCartItems();
+            
+            // تحميل كود الخصم من localStorage إذا كان موجوداً
+            const savedDiscountCode = localStorage.getItem('khuraphaDiscountCode');
+            if (savedDiscountCode) {
+                appliedCoupon = savedDiscountCode;
+                
+                // تحديث واجهة المستخدم لتعكس كود الخصم المطبق
+                if (appliedCoupon === 'disom100') {
+                    document.querySelector('.coupon-input').value = 'disom100';
+                    showToast('تم تحميل كود الخصم المطبق مسبقاً - خصم 100%');
+                } else if (appliedCoupon === 'welcome20') {
+                    document.querySelector('.coupon-input').value = 'welcome20';
+                    showToast('تم تحميل كود الخصم المطبق مسبقاً - خصم 20%');
+                }
+            }
+            
+            updateOrderSummary();
+            attachEventHandlers();
+            
+            // إضافة تفعيل قائمة الهاتف المحمول
+            initMobileMenu();
         });
 
         // تهيئة قائمة الهاتف المحمول
@@ -1058,23 +1048,211 @@
             });
         }
 
-        // إتمام الشراء
-        document.getElementById('checkout-button').addEventListener('click', function() {
-            showToast('جاري توجيهك إلى صفحة الدفع');
-            // توجيه المستخدم إلى صفحة الدفع
-            setTimeout(function() {
-                window.location.href = 'kk1t.html';
-            }, 1500);
-        });
+        // تحميل محتويات السلة من localStorage
+        function loadCartFromStorage() {
+            const savedCart = localStorage.getItem('khuraphaCart');
+            if (savedCart) {
+                cartItems = JSON.parse(savedCart);
+            }
+        }
 
-        // النشرة البريدية
-        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = this.querySelector('input').value;
+        // حفظ محتويات السلة في localStorage
+        function saveCartToStorage() {
+            localStorage.setItem('khuraphaCart', JSON.stringify(cartItems));
+        }
+
+        // دالة لعرض عناصر السلة
+        function renderCartItems() {
+            const cartContainer = document.getElementById('cart-items-container');
+            const emptyCartMessage = document.getElementById('empty-cart-message');
             
-            showToast(`شكراً لك! تم الاشتراك بالنشرة البريدية باستخدام: ${email}`);
-            this.querySelector('input').value = '';
-        });
+            if (cartItems.length === 0) {
+                cartContainer.style.display = 'none';
+                emptyCartMessage.style.display = 'block';
+                return;
+            }
+            
+            cartContainer.style.display = 'block';
+            emptyCartMessage.style.display = 'none';
+            cartContainer.innerHTML = '';
+            
+            cartItems.forEach(item => {
+                const cartItemElement = document.createElement('div');
+                cartItemElement.className = 'cart-item';
+                
+                // عرض السعر الأصلي إذا كان هناك تخفيض
+                let originalPriceHTML = '';
+                if (item.originalPrice && item.originalPrice > item.price) {
+                    originalPriceHTML = `<span class="original-price" style="text-decoration: line-through; color: #999; margin-left: 8px;">${item.originalPrice} ر.س</span>`;
+                }
+                
+                cartItemElement.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" class="cart-item-img">
+                    <div class="cart-item-details">
+                        <h3 class="cart-item-name">${item.name}</h3>
+                        <div class="cart-item-type">${item.type}</div>
+                        <div class="cart-item-price">
+                            <span class="current-price">${item.price} ر.س</span>
+                            ${originalPriceHTML}
+                        </div>
+                    </div>
+                    <div class="cart-item-controls">
+                        <div class="quantity-controls">
+                            <button class="quantity-btn increase" data-id="${item.id}">+</button>
+                            <input type="number" class="quantity-input" value="${item.quantity}" min="1" data-id="${item.id}">
+                            <button class="quantity-btn decrease" data-id="${item.id}">-</button>
+                        </div>
+                        <button class="remove-item" data-id="${item.id}">
+                            <i class="fas fa-trash"></i>
+                            إزالة
+                        </button>
+                    </div>
+                `;
+                
+                cartContainer.appendChild(cartItemElement);
+            });
+        }
+
+        // دالة لتحديث ملخص الطلب
+        function updateOrderSummary() {
+            const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            let discount = 0;
+            if (appliedCoupon === 'disom100') {
+                discount = subtotal; // خصم 100%
+            } else if (appliedCoupon === 'welcome20') {
+                discount = subtotal * 0.2; // خصم 20%
+            }
+            
+            const shipping = subtotal >= 500 || discount === subtotal ? 0 : 50;
+            const total = Math.max(0, subtotal - discount + shipping);
+            
+            document.getElementById('subtotal').textContent = `${subtotal} ر.س`;
+            document.getElementById('discount').textContent = `-${discount} ر.س`;
+            document.getElementById('shipping').textContent = shipping === 0 ? 'مجاني' : `${shipping} ر.س`;
+            document.getElementById('total').textContent = `${total} ر.س`;
+            
+            // تحديث عداد السلة
+            updateCartCount();
+        }
+
+        // تحديث عداد السلة
+        function updateCartCount() {
+            const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+            document.querySelector('.cart-count').textContent = totalItems;
+        }
+
+        // إرفاق معالجات الأحداث
+        function attachEventHandlers() {
+            // زيادة الكمية
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('increase')) {
+                    const itemId = parseInt(e.target.dataset.id);
+                    const item = cartItems.find(item => item.id === itemId);
+                    if (item) {
+                        item.quantity++;
+                        updateCart();
+                    }
+                }
+                
+                // تقليل الكمية
+                if (e.target.classList.contains('decrease')) {
+                    const itemId = parseInt(e.target.dataset.id);
+                    const item = cartItems.find(item => item.id === itemId);
+                    if (item && item.quantity > 1) {
+                        item.quantity--;
+                        updateCart();
+                    }
+                }
+                
+                // إزالة العنصر
+                if (e.target.classList.contains('remove-item') || e.target.closest('.remove-item')) {
+                    const button = e.target.classList.contains('remove-item') ? e.target : e.target.closest('.remove-item');
+                    const itemId = parseInt(button.dataset.id);
+                    const index = cartItems.findIndex(item => item.id === itemId);
+                    if (index !== -1) {
+                        const removedItem = cartItems[index];
+                        cartItems.splice(index, 1);
+                        updateCart();
+                        
+                        // عرض إشعار
+                        showToast(`تمت إزالة ${removedItem.name} من السلة`);
+                    }
+                }
+            });
+            
+            // تغيير الكمية يدويًا
+            document.addEventListener('change', function(e) {
+                if (e.target.classList.contains('quantity-input')) {
+                    const itemId = parseInt(e.target.dataset.id);
+                    const item = cartItems.find(item => item.id === itemId);
+                    const newQuantity = parseInt(e.target.value);
+                    
+                    if (item && newQuantity >= 1) {
+                        item.quantity = newQuantity;
+                        updateCart();
+                    } else if (item && newQuantity < 1) {
+                        item.quantity = 1;
+                        e.target.value = 1;
+                        updateCart();
+                    }
+                }
+            });
+            
+            // تطبيق كوبون الخصم
+            document.querySelector('.coupon-btn').addEventListener('click', function() {
+                const couponInput = document.querySelector('.coupon-input');
+                const couponCode = couponInput.value.trim().toLowerCase();
+                
+                if (couponCode === 'disom100') {
+                    appliedCoupon = 'disom100';
+                    showToast('تم تطبيق كود الخصم بنجاح - خصم 100%');
+                    updateOrderSummary();
+                    couponInput.value = '';
+                    
+                    // تخزين كود الخصم في localStorage
+                    localStorage.setItem('khuraphaDiscountCode', appliedCoupon);
+                } else if (couponCode === 'welcome20') {
+                    appliedCoupon = 'welcome20';
+                    showToast('تم تطبيق كود الخصم بنجاح - خصم 20%');
+                    updateOrderSummary();
+                    couponInput.value = '';
+                    
+                    // تخزين كود الخصم في localStorage
+                    localStorage.setItem('khuraphaDiscountCode', appliedCoupon);
+                } else if (couponCode) {
+                    showToast('كود الخصم غير صحيح', 'error');
+                }
+            });
+            
+            // إتمام الشراء
+            document.getElementById('checkout-button').addEventListener('click', function() {
+                if (cartItems.length === 0) {
+                    showToast('السلة فارغة، أضف منتجات أولاً', 'error');
+                    return;
+                }
+                
+                showToast('جاري توجيهك إلى صفحة الدفع');
+                // توجيه المستخدم إلى صفحة الدفع
+                window.location.href = 'kk1t.html';
+            });
+            
+            // النشرة البريدية
+            document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = this.querySelector('input').value;
+                
+                showToast(`شكراً لك! تم الاشتراك بالنشرة البريدية باستخدام: ${email}`);
+                this.querySelector('input').value = '';
+            });
+        }
+
+        // تحديث السلة
+        function updateCart() {
+            saveCartToStorage();
+            renderCartItems();
+            updateOrderSummary();
+        }
 
         // عرض الإشعارات
         function showToast(message, type = 'success') {
@@ -1096,50 +1274,6 @@
             setTimeout(() => {
                 toast.classList.remove('show');
             }, 3000);
-        }
-
-        // تفعيل قائمة الهاتف المحمول عند تحميل الصفحة
-        document.addEventListener('DOMContentLoaded', function() {
-            initMobileMenu();
-            
-            // إضافة أحداث لأزرار الكمية
-            document.querySelectorAll('.quantity-btn').forEach(button => {
-                button.addEventListener('click', function() {
-                    const input = this.parentElement.querySelector('.quantity-input');
-                    let value = parseInt(input.value);
-                    
-                    if (this.classList.contains('increase')) {
-                        input.value = value + 1;
-                    } else if (this.classList.contains('decrease') && value > 1) {
-                        input.value = value - 1;
-                    }
-                    
-                    // هنا يمكنك إضافة منطق لتحديث السعر
-                    updateCartTotal();
-                });
-            });
-            
-            // أحداث أزرار الإزالة
-            document.querySelectorAll('.remove-item').forEach(button => {
-                button.addEventListener('click', function() {
-                    const item = this.closest('.cart-item');
-                    item.style.opacity = '0';
-                    setTimeout(() => {
-                        item.remove();
-                        updateCartTotal();
-                        showToast('تمت إزالة المنتج من السلة');
-                    }, 300);
-                });
-            });
-            
-            // تحديث الإجمالي الأولي
-            updateCartTotal();
-        });
-
-        // دالة لتحديث الإجمالي (مبسطة لأغراض العرض)
-        function updateCartTotal() {
-            // في التطبيق الحقيقي، سيتم حساب الإجمالي بناء على المحتويات الفعلية للسلة
-            console.log("تم تحديث إجمالي السلة");
         }
     </script>
 </body>
