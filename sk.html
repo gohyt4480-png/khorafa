@@ -351,6 +351,55 @@
             padding-bottom: 10px;
         }
 
+        /* عناصر الطلب في الملخص */
+        .order-items {
+            margin-bottom: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+        }
+
+        .order-item-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .order-item-img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .order-item-name {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .order-item-price {
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        .order-item-quantity {
+            background-color: #f5f5f5;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+        }
+
         .summary-row {
             display: flex;
             justify-content: space-between;
@@ -643,7 +692,7 @@
                 z-index: 2;
             }
             
-            /* تعديلات التنقل */
+            /* تعديلات التنقل - نقل الأيقونات لليسار */
             .nav-container {
                 flex-direction: row;
                 padding: 10px;
@@ -655,6 +704,8 @@
             
             .nav-icons {
                 margin-top: 0;
+                order: -1; /* نقل الأيقونات لليسار */
+                margin-right: auto;
             }
             
             /* زر القائمة الجانبية */
@@ -781,6 +832,28 @@
             }
             
             .copyright {
+                font-size: 0.9rem;
+            }
+            
+            /* تعديلات على ملخص الطلب للهواتف */
+            .order-items {
+                max-height: 200px;
+            }
+            
+            .order-item {
+                padding: 8px 0;
+            }
+            
+            .order-item-img {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .order-item-name {
+                font-size: 0.8rem;
+            }
+            
+            .order-item-price {
                 font-size: 0.9rem;
             }
         }
@@ -968,6 +1041,10 @@
             <div class="order-summary">
                 <h2 class="summary-title">ملخص الطلب</h2>
                 
+                <div class="order-items" id="orderItems">
+                    <!-- سيتم ملء هذا القسم ديناميكيًا باستخدام JavaScript -->
+                </div>
+                
                 <div class="summary-row">
                     <span class="summary-label">المجموع الفرعي</span>
                     <span class="summary-value" id="subtotal">0 ر.س</span>
@@ -975,7 +1052,7 @@
                 
                 <div class="summary-row">
                     <span class="summary-label">التخفيض</span>
-                    <span class="summary-value discount-value" id="discount">0 ر.س</span>
+                    <span class="summary-value discount-value" id="discount">-0 ر.س</span>
                 </div>
                 
                 <div class="summary-row">
@@ -987,13 +1064,6 @@
                     <span class="total-label">الإجمالي</span>
                     <span class="total-value" id="total">0 ر.س</span>
                 </div>
-                
-                <div class="coupon-form">
-                    <input type="text" class="coupon-input" placeholder="كود الخصم">
-                    <button class="coupon-btn">تطبيق</button>
-                </div>
-                
-                <button class="checkout-btn">إتمام الشراء</button>
                 
                 <div class="secure-checkout">
                     <i class="fas fa-lock"></i>
@@ -1087,6 +1157,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             loadCartFromStorage();
             renderCartItems();
+            renderOrderItems();
             
             // تحميل كود الخصم من localStorage إذا كان موجوداً
             const savedDiscountCode = localStorage.getItem('khuraphaDiscountCode');
@@ -1171,6 +1242,36 @@
                 `;
                 
                 cartContainer.appendChild(cartItemElement);
+            });
+        }
+
+        // دالة لعرض عناصر الطلب في الملخص
+        function renderOrderItems() {
+            const orderItemsContainer = document.getElementById('orderItems');
+            
+            if (cartItems.length === 0) {
+                orderItemsContainer.innerHTML = '<p class="empty-order">لا توجد منتجات في السلة</p>';
+                return;
+            }
+            
+            orderItemsContainer.innerHTML = '';
+            
+            cartItems.forEach(item => {
+                const orderItemElement = document.createElement('div');
+                orderItemElement.className = 'order-item';
+                
+                orderItemElement.innerHTML = `
+                    <div class="order-item-info">
+                        <img src="${item.image}" alt="${item.name}" class="order-item-img">
+                        <div>
+                            <div class="order-item-name">${item.name}</div>
+                            <span class="order-item-quantity">${item.quantity}x</span>
+                        </div>
+                    </div>
+                    <div class="order-item-price">${item.price * item.quantity} ر.س</div>
+                `;
+                
+                orderItemsContainer.appendChild(orderItemElement);
             });
         }
 
@@ -1286,34 +1387,8 @@
                 }
             });
             
-            // تطبيق كوبون الخصم
-            document.querySelector('.coupon-btn').addEventListener('click', function() {
-                const couponInput = document.querySelector('.coupon-input');
-                const couponCode = couponInput.value.trim().toLowerCase();
-                
-                if (couponCode === 'disom100') {
-                    appliedCoupon = 'disom100';
-                    showToast('تم تطبيق كود الخصم بنجاح - خصم 100%');
-                    updateOrderSummary();
-                    couponInput.value = '';
-                    
-                    // تخزين كود الخصم في localStorage
-                    localStorage.setItem('khuraphaDiscountCode', appliedCoupon);
-                } else if (couponCode === 'welcome20') {
-                    appliedCoupon = 'welcome20';
-                    showToast('تم تطبيق كود الخصم بنجاح - خصم 20%');
-                    updateOrderSummary();
-                    couponInput.value = '';
-                    
-                    // تخزين كود الخصم في localStorage
-                    localStorage.setItem('khuraphaDiscountCode', appliedCoupon);
-                } else if (couponCode) {
-                    showToast('كود الخصم غير صحيح', 'error');
-                }
-            });
-            
             // إتمام الشراء
-            document.querySelector('.checkout-btn').addEventListener('click', function() {
+            document.querySelector('.checkout-btn')?.addEventListener('click', function() {
                 if (cartItems.length === 0) {
                     showToast('السلة فارغة، أضف منتجات أولاً', 'error');
                     return;
@@ -1338,6 +1413,7 @@
         function updateCart() {
             saveCartToStorage();
             renderCartItems();
+            renderOrderItems();
             updateOrderSummary();
         }
 
