@@ -110,8 +110,7 @@
         .nav-icons {
             display: flex;
             align-items: center;
-            width: 100%;
-            justify-content: space-between;
+            gap: 15px;
         }
 
         .nav-icons a {
@@ -119,19 +118,18 @@
             font-size: 1rem;
             transition: var(--transition);
             position: relative;
-            padding: 8px;
         }
 
         .cart-count {
             position: absolute;
-            top: -2px;
-            right: -2px;
+            top: -8px;
+            left: -8px;
             background-color: var(--discount-color);
             color: white;
             border-radius: 50%;
-            width: 16px;
-            height: 16px;
-            font-size: 0.65rem;
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -145,6 +143,7 @@
             width: 24px;
             height: 20px;
             cursor: pointer;
+            margin-right: auto; /* نقل الهامبرجر لليمين */
         }
 
         .hamburger-menu span {
@@ -411,9 +410,6 @@
             padding: 16px;
             box-shadow: var(--card-shadow);
             margin-top: 10px;
-            position: sticky;
-            bottom: 0;
-            z-index: 10;
         }
 
         .summary-title {
@@ -699,14 +695,6 @@
                 gap: 20px;
             }
             
-            .order-summary {
-                position: sticky;
-                top: 100px;
-                bottom: auto;
-                margin-top: 0;
-                height: fit-content;
-            }
-            
             .footer-content {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -821,36 +809,6 @@
         .animate {
             animation: fadeIn 0.5s ease forwards;
         }
-
-        /* تحسينات للأجهزة التي تفضل الوضع المظلم */
-        @media (prefers-color-scheme: dark) {
-            body {
-                background-color: #1a1a1a;
-                color: #f0f0f0;
-            }
-            
-            .cart-items,
-            .order-summary {
-                background-color: #2a2a2a;
-                color: #f0f0f0;
-            }
-            
-            .cart-item {
-                border-bottom-color: #444;
-            }
-            
-            .summary-total {
-                border-top-color: #444;
-            }
-            
-            .quantity-input,
-            .coupon-input,
-            .newsletter-input {
-                background-color: #333;
-                color: #f0f0f0;
-                border-color: #444;
-            }
-        }
     </style>
 </head>
 <body>
@@ -870,6 +828,12 @@
 
         <nav>
             <div class="nav-container">
+                <div class="hamburger-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                
                 <div class="nav-icons">
                     <a href="#"><i class="fas fa-search"></i></a>
                     <a href="#"><i class="fas fa-user"></i></a>
@@ -877,20 +841,6 @@
                         <i class="fas fa-shopping-cart"></i>
                         <span class="cart-count">0</span>
                     </a>
-                </div>
-                
-                <ul class="nav-links">
-                    <li><a href="index.html">الرئيسية</a></li>
-                    <li><a href="kk1.html">العطور</a></li>
-                    <li><a href="#">البخور</a></li>
-                    <li><a href="#">مجموعات الهدايا</a></li>
-                    <li><a href="#">اتصل بنا</a></li>
-                </ul>
-                
-                <div class="hamburger-menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
                 </div>
             </div>
         </nav>
@@ -973,7 +923,7 @@
             <p>كن أول من يعرف عن العروض الجديدة والمنتجات الحصرية</p>
             <form class="newsletter-form">
                 <input type="email" class="newsletter-input" placeholder="بريدك الإلكتروني" required>
-                <button type="submit" class="newsletter-btn">اشتراك</button>
+                <button type="submit" class="newsletter-btn">اشترак</button>
             </form>
         </div>
     </section>
@@ -1333,4 +1283,3 @@
     </script>
 </body>
 </html>
-
