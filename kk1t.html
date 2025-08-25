@@ -594,6 +594,7 @@
             max-width: 600px;
             margin: 0 auto 20px;
             font-size: 1rem;
+            line-height: 1.6;
         }
 
         .newsletter-form {
@@ -856,18 +857,27 @@
             }
             
             .checkout-progress {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 20px;
+                flex-direction: row;
+                justify-content: space-around;
+                align-items: center;
+                gap: 10px;
             }
             
             .checkout-progress:before {
-                display: none;
+                display: block;
+                top: 15px;
             }
             
             .progress-step {
-                flex-direction: row;
-                gap: 15px;
+                flex-direction: column;
+                gap: 5px;
+                margin-bottom: 0;
+                flex: 1;
+            }
+            
+            .step-text {
+                font-size: 0.75rem;
+                white-space: nowrap;
             }
         }
 
@@ -973,7 +983,7 @@
                 <input type="hidden" name="_template" value="table">
                 <input type="hidden" name="_captcha" value="false">
                 
-                <div class="form-section">
+                <div class="form-section" id="shipping-info">
                     <h3 class="section-title">معلومات الشحن</h3>
                     <div class="form-row">
                         <div class="form-group">
@@ -1106,7 +1116,8 @@
                     <span>شراء آمن ومحمي</span>
                 </div>
                 
-                <button class="place-order-btn" id="placeOrderBtnForm">إتمام الطلب</button>
+                <!-- زر إتمام الطلب الثاني في قسم ملخص الطلب -->
+                <button class="place-order-btn" id="completeOrderBtn">إتمام الطلب</button>
             </div>
         </div>
     </section>
@@ -1228,6 +1239,12 @@
             // تحويل قائمة الهاتف
             document.getElementById('mobile-menu').addEventListener('click', function() {
                 document.querySelector('.nav-links').classList.toggle('active');
+            });
+
+            // إضافة زر إتمام الطلب الثاني في قسم ملخص الطلب
+            document.getElementById('completeOrderBtn').addEventListener('click', function() {
+                // الانتقال إلى قسم معلومات الشحن
+                document.getElementById('shipping-info').scrollIntoView({ behavior: 'smooth' });
             });
         });
 
