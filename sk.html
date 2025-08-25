@@ -768,7 +768,7 @@
         @keyframes pulse {
             0% { transform: scale(1); }
             50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+           100% { transform: scale(1); }
         }
 
         .animate {
@@ -801,23 +801,23 @@
             font-size: 1.2rem;
         }
 
-        /* إضافة أنماط التصغير للشاشات الصغيرة */
-        .page-content {
+        /* إضافة أنماط التصغير للشاشات الصغيرة - للمنتجات فقط */
+        .products-container {
             width: 100%;
             transform-origin: top right;
-            overflow-x: hidden;
         }
 
         @media (max-width: 576px) {
-            .page-content {
+            .products-container {
                 transform: scale(0.5);
                 width: 200%;
-                height: 200vh;
-                overflow: visible;
+                height: 200%;
+                margin-left: -50%;
+                margin-top: -25%;
             }
             
-            body {
-                overflow-x: hidden;
+            .cart-items {
+                overflow: visible;
             }
             
             .toast {
@@ -835,7 +835,7 @@
     <!-- الشريط العلوي -->
     <div class="top-bar">
         <span class="close-topbar"><i class="fas fa-times"></i></span>
-        توصيل مجاني للطلبات فوق 500 ريال | خصم 20% على أول طلب لك | استخدم الكود: WELCOME20
+        توصيل مجاني للطلبات فوق 500 ر.س | خصم 20% على أول طلب لك | استخدم الكود: WELCOME20
     </div>
 
     <!-- الرأس -->
@@ -891,14 +891,13 @@
     </div>
     <div class="overlay"></div>
 
-    <!-- بداية المحتوى الرئيسي المغلف -->
-    <div class="page-content">
-        <!-- سلة التسوق -->
-        <section class="container">
-            <h1 class="cart-title">سلة التسوق</h1>
-            
-            <div class="cart-container">
-                <div class="cart-items">
+    <!-- سلة التسوق -->
+    <section class="container">
+        <h1 class="cart-title">سلة التسوق</h1>
+        
+        <div class="cart-container">
+            <div class="cart-items">
+                <div class="products-container">
                     <div id="cart-items-container" style="display: none;">
                         <!-- العناصر ستضاف هنا ديناميكيًا -->
                     </div>
@@ -909,110 +908,109 @@
                         <a href="kk1.html" class="continue-shopping">مواصلة التسوق</a>
                     </div>
                 </div>
+            </div>
+            
+            <div class="order-summary">
+                <h2 class="summary-title">ملخص الطلب</h2>
                 
-                <div class="order-summary">
-                    <h2 class="summary-title">ملخص الطلب</h2>
-                    
-                    <div class="summary-row">
-                        <span class="summary-label">المجموع الفرعي</span>
-                        <span class="summary-value" id="subtotal">0 ر.س</span>
-                    </div>
-                    
-                    <div class="summary-row">
-                        <span class="summary-label">التخفيض</span>
-                        <span class="summary-value discount-value" id="discount">0 ر.س</span>
-                    </div>
-                    
-                    <div class="summary-row">
-                        <span class="summary-label">تكلفة الشحن</span>
-                        <span class="summary-value" id="shipping">0 ر.س</span>
-                    </div>
-                    
-                    <div class="summary-row summary-total">
-                        <span class="total-label">الإجمالي</span>
-                        <span class="total-value" id="total">0 ر.س</span>
-                    </div>
-                    
-                    <div class="coupon-form">
-                        <input type="text" class="coupon-input" placeholder="كود الخصم">
-                        <button class="coupon-btn">تطبيق</button>
-                    </div>
-                    
-                    <button class="checkout-btn" id="checkout-button">إتمام الشراء</button>
-                    
-                    <div class="secure-checkout">
-                        <i class="fas fa-lock"></i>
-                        <span>شراء آمن ومحمي</span>
-                    </div>
+                <div class="summary-row">
+                    <span class="summary-label">المجموع الفرعي</span>
+                    <span class="summary-value" id="subtotal">0 ر.س</span>
+                </div>
+                
+                <div class="summary-row">
+                    <span class="summary-label">التخفيض</span>
+                    <span class="summary-value discount-value" id="discount">0 ر.س</span>
+                </div>
+                
+                <div class="summary-row">
+                    <span class="summary-label">تكلفة الشحن</span>
+                    <span class="summary-value" id="shipping">0 ر.س</span>
+                </div>
+                
+                <div class="summary-row summary-total">
+                    <span class="total-label">الإجمالي</span>
+                    <span class="total-value" id="total">0 ر.س</span>
+                </div>
+                
+                <div class="coupon-form">
+                    <input type="text" class="coupon-input" placeholder="كود الخصم">
+                    <button class="coupon-btn">تطبيق</button>
+                </div>
+                
+                <button class="checkout-btn" id="checkout-button">إتمام الشراء</button>
+                
+                <div class="secure-checkout">
+                    <i class="fas fa-lock"></i>
+                    <span>شراء آمن ومحمي</span>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- النشرة البريدية -->
-        <section class="newsletter">
-            <div class="container">
-                <h2>اشترك في نشرتنا البريدية</h2>
-                <p>كن أول من يعرف عن العروض الجديدة والمنتجات الحصرية</p>
-                <form class="newsletter-form">
-                    <input type="email" class="newsletter-input" placeholder="بريدك الإلكتروني" required>
-                    <button type="submit" class="newsletter-btn">اشترак</button>
-                </form>
-            </div>
-        </section>
+    <!-- النشرة البريدية -->
+    <section class="newsletter">
+        <div class="container">
+            <h2>اشترك في نشرتنا البريدية</h2>
+            <p>كن أول من يعرف عن العروض الجديدة والمنتجات الحصرية</p>
+            <form class="newsletter-form">
+                <input type="email" class="newsletter-input" placeholder="بريدك الإلكتروني" required>
+                <button type="submit" class="newsletter-btn">اشتراك</button>
+            </form>
+        </div>
+    </section>
 
-        <!-- Footer -->
-        <footer>
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>خرافة للعود</h3>
-                    <p>متجر متخصص في أجود أنواع العطور والبخور والعود، نقدم لكم منتجات أصلية مستوحاة من تراثنا العربي الأصيل.</p>
-                    <div class="social-icons">
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-snapchat-ghost"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-
-                <div class="footer-column">
-                    <h3>روابط سريعة</h3>
-                    <ul class="footer-links">
-                        <li><a href="index.html">الرئيسية</a></li>
-                        <li><a href="kk1.html">العطور</a></li>
-                        <li><a href="#">عروض خاصة</a></li>
-                        <li><a href="#">مجموعات الهدايا</a></li>
-                        <li><a href="#">اتصل بنا</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-column">
-                    <h3>خدمة العملاء</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">أسئلة شائعة</a></li>
-                        <li><a href="#">سياسة الإرجاع</a></li>
-                        <li><a href="#">طرق الدفع</a></li>
-                        <li><a href="#">تتبع الطلب</a></li>
-                        <li><a href="#">الشروط والأحكام</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-column">
-                    <h3>معلومات الاتصال</h3>
-                    <ul class="footer-links">
-                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
-                        <li><i class="fas fa-phone"></i> 966112345678+</li>
-                        <li><i class="fas fa-envelope"></i> info@khurapha.com</li>
-                        <li><i class="fas fa-clock"></i> الأحد - الخميس: 9ص - 5م</li>
-                    </ul>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>خرافة للعود</h3>
+                <p>متجر متخصص في أجود أنواع العطور والبخور والعود، نقدم لكم منتجات أصلية مستوحاة من تراثنا العربي الأصيل.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-snapchat-ghost"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
                 </div>
             </div>
 
-            <div class="copyright">
-                <p>جميع الحقوق محفوظة &copy; 2023 خرافة للعود</p>
+            <div class="footer-column">
+                <h3>روابط سريعة</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="kk1.html">العطور</a></li>
+                    <li><a href="#">عروض خاصة</a></li>
+                    <li><a href="#">مجموعات الهدايا</a></li>
+                    <li><a href="#">اتصل بنا</a></li>
+                </ul>
             </div>
-        </footer>
-    </div>
-    <!-- نهاية المحتوى الرئيسي المغلف -->
+
+            <div class="footer-column">
+                <h3>خدمة العملاء</h3>
+                <ul class="footer-links">
+                    <li><a href="#">أسئلة شائعة</a></li>
+                    <li><a href="#">سياسة الإرجاع</a></li>
+                    <li><a href="#">طرق الدفع</a></li>
+                    <li><a href="#">تتبع الطلب</a></li>
+                    <li><a href="#">الشروط والأحكام</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>معلومات الاتصال</h3>
+                <ul class="footer-links">
+                    <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    <li><i class="fas fa-phone"></i> 966112345678+</li>
+                    <li><i class="fas fa-envelope"></i> info@khurapha.com</li>
+                    <li><i class="fas fa-clock"></i> الأحد - الخميس: 9ص - 5م</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>جميع الحقوق محفوظة &copy; 2023 خرافة للعود</p>
+        </div>
+    </footer>
 
     <!-- Toast Notification -->
     <div class="toast">
@@ -1245,7 +1243,7 @@
                     updateOrderSummary();
                     couponInput.value = '';
                     
-                    // تخزين كود الخصم في localStorage
+                    // تخزين كود الخصم в localStorage
                     localStorage.setItem('khuraphaDiscountCode', appliedCoupon);
                 } else if (couponCode === 'welcome20') {
                     appliedCoupon = 'welcome20';
