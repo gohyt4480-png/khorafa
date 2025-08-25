@@ -896,6 +896,157 @@
         .animate {
             animation: fadeIn 0.5s ease forwards;
         }
+
+        /* أنت هنا: إضافة تحسينات للهواتف */
+        @media (max-width: 768px) {
+            /* تحسين عرض المنتجات في السلة */
+            .cart-item {
+                grid-template-columns: 80px 1fr;
+                grid-template-areas: 
+                    "image details"
+                    "controls controls";
+                gap: 12px;
+                padding: 15px 0;
+                border-bottom: 1px solid #eee;
+                position: relative;
+            }
+            
+            .cart-item-img {
+                grid-area: image;
+                width: 80px;
+                height: 80px;
+                margin: 0;
+            }
+            
+            .cart-item-details {
+                grid-area: details;
+                padding-left: 10px;
+            }
+            
+            .cart-item-controls {
+                grid-area: controls;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                margin-top: 10px;
+            }
+            
+            .cart-item-name {
+                font-size: 1rem;
+                margin-bottom: 5px;
+            }
+            
+            .cart-item-type {
+                font-size: 0.8rem;
+                margin-bottom: 8px;
+            }
+            
+            .cart-item-price {
+                font-size: 1rem;
+            }
+            
+            .remove-item {
+                position: absolute;
+                left: 0;
+                top: 15px;
+                font-size: 0.8rem;
+            }
+            
+            /* دمج السلة مع ملخص الطلب على الهواتف */
+            .cart-container {
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .order-summary {
+                order: -1;
+                position: relative;
+                top: 0;
+                margin-bottom: 20px;
+                border-radius: 8px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            }
+            
+            /* تحسينات إضافية للهواتف */
+            .container {
+                padding: 0 15px;
+            }
+            
+            .cart-title {
+                font-size: 1.5rem;
+                text-align: center;
+                margin: 20px 0;
+            }
+            
+            .quantity-controls {
+                margin: 0 auto;
+            }
+            
+            /* تحسين عرض تفاصيل المنتج */
+            .cart-item-details {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+            
+            /* تحسين الأزرار على الهواتف */
+            .checkout-btn, .continue-shopping, .coupon-btn {
+                padding: 14px;
+                font-size: 1rem;
+            }
+            
+            .coupon-form {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .coupon-input {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cart-item {
+                grid-template-columns: 70px 1fr;
+            }
+            
+            .cart-item-img {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .cart-item-name {
+                font-size: 0.9rem;
+            }
+            
+            .cart-item-price {
+                font-size: 0.9rem;
+            }
+            
+            .quantity-btn {
+                width: 28px;
+                height: 28px;
+            }
+            
+            .quantity-input {
+                width: 35px;
+                height: 28px;
+            }
+            
+            .checkout-btn {
+                font-size: 0.9rem;
+                padding: 12px;
+            }
+        }
+
+        /* تحسينات عامة للشاشات الصغيرة */
+        @media (max-width: 992px) {
+            .order-summary {
+                position: relative;
+                top: 0;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1018,7 +1169,7 @@
             <p>كن أول من يعرف عن العروض الجديدة والمنتجات الحصرية</p>
             <form class="newsletter-form">
                 <input type="email" class="newsletter-input" placeholder="بريدك الإلكتروني" required>
-                <button type="submit" class="newsletter-btn">اشتراك</button>
+                <button type="submit" class="newsletter-btn">اشترак</button>
             </form>
         </div>
     </section>
@@ -1281,7 +1432,7 @@
                     if (item && newQuantity >= 1) {
                         item.quantity = newQuantity;
                         updateCart();
-                    } else if (item && newQuantity < 1) {
+                    else if (item && newQuantity < 1) {
                         item.quantity = 1;
                         e.target.value = 1;
                         updateCart();
