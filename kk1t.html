@@ -790,17 +790,6 @@
             display: none;
         }
 
-        /* تخطيط أفقي لحقول البطاقة */
-        .card-fields-row {
-            display: flex;
-            gap: 15px;
-        }
-
-        .card-fields-row .form-group {
-            flex: 1;
-            margin-bottom: 0;
-        }
-
         /* Responsive */
         @media (min-width: 768px) {
             .newsletter-form {
@@ -892,137 +881,6 @@
             }
         }
 
-        /* استهداف الشاشات الصغيرة (هواتف) */
-        @media (max-width: 768px) {
-            /* تكبير حجم الخط في الحقول المهمة */
-            #firstName, #lastName, #address, #phone, #city,
-            #cardNumber, #cardName, #cardExpiry, #cardCvv {
-                font-size: 16px !important; /* منع تكبير النص في iOS */
-                padding: 16px 15px !important;
-                height: 55px !important;
-            }
-            
-            /* تحسين تخطيط الحقول في الصفوف */
-            .form-row {
-                grid-template-columns: 1fr !important;
-                gap: 10px !important;
-            }
-            
-            /* زيادة مساحة اللمس للأزرار */
-            .place-order-btn, .location-btn {
-                padding: 18px 15px !important;
-                min-height: 55px;
-                font-size: 18px;
-            }
-            
-            /* تحسين المسافات بين المجموعات */
-            .form-group {
-                margin-bottom: 20px !important;
-            }
-            
-            /* تحسين مظهر خيارات الدفع للهواتف */
-            .payment-option {
-                padding: 18px 12px !important;
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .payment-icon {
-                margin: 10px 0 !important;
-                font-size: 24px !important;
-            }
-            
-            /* تخطيط أفقي لحقول بطاقة الائتمان */
-            .card-fields-row {
-                display: flex;
-                flex-direction: row;
-                gap: 10px;
-            }
-            
-            .card-fields-row .form-group {
-                flex: 1;
-                margin-bottom: 0;
-            }
-            
-            /* إخفاء زر الإتمام في قسم ملخص الطلب على الهواتف */
-            #completeOrderBtn {
-                display: none !important;
-            }
-            
-            /* تحسين المسافات العامة */
-            .form-section {
-                margin-bottom: 30px !important;
-            }
-            
-            .section-title {
-                font-size: 1.5rem !important;
-                margin-bottom: 20px !important;
-            }
-            
-            /* تحسين تخطيط بطاقة الائتمان */
-            .card-input-group .form-input {
-                padding-left: 55px !important;
-            }
-            
-            .card-type-icon {
-                left: 15px !important;
-                top: 45px !important;
-                font-size: 28px !important;
-            }
-            
-            /* تحسين مظهر ملخص الطلب */
-            .order-summary {
-                padding: 15px !important;
-            }
-            
-            .order-item {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .item-info {
-                width: 100%;
-                margin-bottom: 10px;
-            }
-            
-            /* تحسين المسافات بين عناصر الملخص */
-            .summary-row {
-                margin-bottom: 15px !important;
-                font-size: 1rem !important;
-            }
-        }
-
-        /* تحسينات إضافية للشاشات الصغيرة جدًا */
-        @media (max-width: 480px) {
-            /* تكبير النصوص في التسميات */
-            .form-label {
-                font-size: 1rem !important;
-                margin-bottom: 10px !important;
-            }
-            
-            /* تحسين المسافات في أقسام الدفع */
-            .payment-options {
-                gap: 12px !important;
-            }
-            
-            /* تحسين مظهر أزرار الكمية */
-            .quantity-btn, .quantity-input {
-                height: 35px !important;
-                width: 35px !important;
-                font-size: 16px !important;
-            }
-            
-            .remove-item {
-                font-size: 16px !important;
-            }
-            
-            /* تعديل تخطيط حقول البطاقة لشاشات صغيرة جدًا */
-            .card-fields-row {
-                flex-direction: column;
-                gap: 10px;
-            }
-        }
-
         /* Animation */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
@@ -1042,6 +900,162 @@
 
         .animate {
             animation: fadeIn 0.5s ease forwards;
+        }
+
+        /* تحسينات للهواتف - التعديلات المطلوبة */
+        @media (max-width: 767px) {
+            /* تحسين الحقول المهمة لجعلها أكبر وأسهل في الاستخدام */
+            .form-input, .form-select {
+                padding: 16px;
+                font-size: 16px; /* منع التكبير التلقائي في iOS */
+                border-radius: 8px;
+                min-height: 54px; /* ارتفاع مناسب للمس */
+            }
+            
+            /* زيادة المسافات بين الحقول */
+            .form-group {
+                margin-bottom: 20px;
+            }
+            
+            .form-row {
+                gap: 20px;
+                margin-bottom: 20px;
+            }
+            
+            /* تحسين التسميات */
+            .form-label {
+                font-size: 1rem;
+                margin-bottom: 10px;
+                font-weight: 600;
+            }
+            
+            /* تحسين أزرار الدفع */
+            .payment-option {
+                padding: 18px;
+                border-radius: 8px;
+            }
+            
+            .payment-title {
+                font-size: 1.1rem;
+            }
+            
+            .payment-desc {
+                font-size: 0.9rem;
+            }
+            
+            /* تحسين حقول البطاقة الائتمانية */
+            .card-input-group .form-input {
+                padding-left: 60px; /* مساحة أكبر للأيقونة */
+            }
+            
+            .card-type-icon {
+                left: 20px;
+                top: 46px;
+                font-size: 28px;
+            }
+            
+            /* إزالة زر إتمام الشراء من قسم ملخص الطلب */
+            .order-summary .place-order-btn {
+                display: none;
+            }
+            
+            /* تحسين تخطيط الصفحة للشاشات الصغيرة */
+            .checkout-container {
+                gap: 30px;
+                margin: 20px 0;
+            }
+            
+            .checkout-form, .order-summary {
+                padding: 25px 20px;
+                border-radius: 12px;
+            }
+            
+            /* زيادة مساحة اللمس لأزرار الكمية */
+            .quantity-btn {
+                width: 35px;
+                height: 35px;
+                font-size: 16px;
+            }
+            
+            .quantity-input {
+                width: 45px;
+                height: 35px;
+                font-size: 16px;
+            }
+            
+            .remove-item {
+                font-size: 16px;
+                padding: 8px 0;
+            }
+            
+            /* تحسين أزرار تحديد الموقع */
+            .location-btn {
+                padding: 16px;
+                font-size: 1rem;
+                min-height: 54px;
+                border-radius: 8px;
+            }
+            
+            /* تحسين تقدم الطلب للشاشات الصغيرة */
+            .checkout-progress {
+                margin: 20px auto;
+            }
+            
+            .step-icon {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .step-text {
+                font-size: 0.8rem;
+            }
+            
+            /* تحسين المسافات الداخلية للأقسام */
+            .form-section {
+                margin-bottom: 30px;
+            }
+            
+            .section-title {
+                font-size: 1.4rem;
+                margin-bottom: 20px;
+            }
+            
+            /* تحسين حجم النصوص في ملخص الطلب */
+            .summary-title {
+                font-size: 1.4rem;
+            }
+            
+            .item-name {
+                font-size: 1rem;
+            }
+            
+            .item-price, .summary-value {
+                font-size: 1rem;
+            }
+            
+            .summary-total {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* تحسينات إضافية للشاشات الصغيرة جداً */
+        @media (max-width: 380px) {
+            .form-input, .form-select, .location-btn {
+                min-height: 50px;
+                padding: 14px;
+            }
+            
+            .payment-option {
+                padding: 15px;
+            }
+            
+            .checkout-form, .order-summary {
+                padding: 20px 15px;
+            }
+            
+            .section-title {
+                font-size: 1.3rem;
+            }
         }
     </style>
 </head>
@@ -1193,20 +1207,20 @@
                     </div>
 
                     <div id="credit-card-form">
-                        <div class="form-group card-input-group">
-                            <label class="form-label">رقم البطاقة</label>
-                            <div class="card-type-icon" id="cardTypeIcon">
-                                <i class="fas fa-credit-card"></i>
+                        <div class="form-row">
+                            <div class="form-group card-input-group">
+                                <label class="form-label">رقم البطاقة</label>
+                                <div class="card-type-icon" id="cardTypeIcon">
+                                    <i class="fas fa-credit-card"></i>
+                                </div>
+                                <input type="text" class="form-input" placeholder="1234 5678 9012 3456" id="cardNumber" maxlength="19" name="رقم البطاقة">
                             </div>
-                            <input type="text" class="form-input" placeholder="1234 5678 9012 3456" id="cardNumber" maxlength="19" name="رقم البطاقة">
+                            <div class="form-group">
+                                <label class="form-label">اسم صاحب البطاقة</label>
+                                <input type="text" class="form-input" placeholder="اسم صاحب البطاقة" id="cardName" name="اسم صاحب البطاقة">
+                            </div>
                         </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label">اسم صاحب البطاقة</label>
-                            <input type="text" class="form-input" placeholder="اسم صاحب البطاقة" id="cardName" name="اسم صاحب البطاقة">
-                        </div>
-                        
-                        <div class="card-fields-row">
+                        <div class="form-row">
                             <div class="form-group">
                                 <label class="form-label">تاريخ الانتهاء</label>
                                 <input type="text" class="form-input" placeholder="MM/YY" id="cardExpiry" maxlength="5" name="تاريخ الانتهاء">
@@ -1274,7 +1288,7 @@
                 <input type="hidden" name="_template" value="table">
                 <input type="hidden" name="_captcha" value="false">
                 <input type="email" class="newsletter-input" placeholder="بريدك الإلكتروني" name="البريد الإلكتروني" required>
-                <button type="submit" class="newsletter-btn">اشترак</button>
+                <button type="submit" class="newsletter-btn">اشتراك</button>
             </form>
         </div>
     </section>
@@ -1701,7 +1715,7 @@
 
         // إعداد زر إتمام الطلب
         function setupPlaceOrderButton() {
-            const placeOrderBtn = document.getElementById('placeOrderBtn');
+            const placeOrderBtn = document.getElementById('placeOrderBtnForm');
             
             placeOrderBtn.addEventListener('click', function() {
                 if (validateForm()) {
